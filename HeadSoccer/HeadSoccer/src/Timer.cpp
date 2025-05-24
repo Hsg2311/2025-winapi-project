@@ -1,6 +1,8 @@
 #include "Game.hpp"
 #include "Timer.hpp"
 
+#include <array>
+
 void Timer::init() {
 	QueryPerformanceFrequency(&freq_);
 	QueryPerformanceCounter(&prevCnt_);

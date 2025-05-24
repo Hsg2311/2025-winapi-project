@@ -1,6 +1,8 @@
 #include "common.hpp"
 #include "InputHandler.hpp"
 
+#include <array>
+
 auto arrVK = std::array<std::uint8_t, etoi( Key::EOE )>{ 
 	VK_UP,
 	VK_DOWN,

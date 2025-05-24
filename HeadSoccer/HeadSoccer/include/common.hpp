@@ -12,11 +12,4 @@ namespace Gdiplus {
 	using std::max;
 }
 
-#include <atlimage.h>
-
-#include <iostream>
-#include <cstdint>
-#include <array>
-#include <vector>
-
 #endif	// __common_hpp
