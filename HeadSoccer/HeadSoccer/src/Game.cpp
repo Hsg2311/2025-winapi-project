@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "Timer.hpp"
+#include "InputHandler.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;
@@ -26,10 +27,12 @@ void Game::init( HWND hWnd, POINT rsl ) {
 	DeleteObject( oldBmp );
 
 	Timer::init( );
+	InputHandler::init( );
 }
 
 void Game::start( ) {
 	Timer::update( );
+	InputHandler::update( );
 
 	// double buffering
 	Rectangle( memDC_, -1, -1, rsl_.x + 1, rsl_.y + 1 );
