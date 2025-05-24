@@ -14,4 +14,9 @@ namespace Gdiplus {
 
 #include <atlimage.h>
 
+#include <iostream>
+#include <cstdint>
+#include <array>
+#include <vector>
+
 #endif	// __common_hpp

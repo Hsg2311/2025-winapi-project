@@ -1,5 +1,6 @@
 ﻿#include "common.hpp"
 #include "HeadSoccer.h"
+#include "Timer.hpp"
 
 #define MAX_LOADSTRING 100
 
@@ -39,6 +40,8 @@ int APIENTRY wWinMain( _In_ HINSTANCE hInstance,
 
 	MSG msg;
 
+	auto hdc = GetDC(gHwnd);
+	Timer::init();
 	while ( true ) {
 		if ( PeekMessage( &msg, nullptr, 0, 0, PM_REMOVE ) ) {
 			if ( msg.message == WM_QUIT ) {
@@ -52,7 +55,8 @@ int APIENTRY wWinMain( _In_ HINSTANCE hInstance,
 			}
 		}
 		else {
-			
+			Timer::update();
+			Timer::render(gHwnd,hdc);
 		}
 	}
 
