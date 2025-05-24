@@ -1,6 +1,8 @@
 ﻿#include "common.hpp"
 #include "HeadSoccer.h"
 
+#include "Game.hpp"
+
 #define MAX_LOADSTRING 100
 
 HINSTANCE hInst;
@@ -24,16 +26,16 @@ int APIENTRY wWinMain( _In_ HINSTANCE hInstance,
 
 	// TODO: 여기에 코드를 입력합니다.
 
-	// 전역 문자열을 초기화합니다.
 	LoadStringW( hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING );
 	LoadStringW( hInstance, IDC_HEADSOCCER, szWindowClass, MAX_LOADSTRING );
 	MyRegisterClass( hInstance );
 
-	// 애플리케이션 초기화를 수행합니다:
 	if ( !InitInstance( hInstance, nCmdShow ) )
 	{
 		return FALSE;
 	}
+
+	Game::init( gHwnd, { 1280, 720 } );
 
 	HACCEL hAccelTable = LoadAccelerators( hInstance, MAKEINTRESOURCE( IDC_HEADSOCCER ) );
 
@@ -52,7 +54,7 @@ int APIENTRY wWinMain( _In_ HINSTANCE hInstance,
 			}
 		}
 		else {
-			
+			Game::start( );
 		}
 	}
 
