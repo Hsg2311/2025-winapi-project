@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Timer.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;
@@ -23,15 +24,20 @@ void Game::init( HWND hWnd, POINT rsl ) {
 
 	auto oldBmp = (HBITMAP)SelectObject( memDC_, memBmp_ );
 	DeleteObject( oldBmp );
+
+	Timer::init( );
 }
 
 void Game::start( ) {
-
+	Timer::update( );
 
 	// double buffering
 	Rectangle( memDC_, -1, -1, rsl_.x + 1, rsl_.y + 1 );
 
 	BitBlt( hDC_, 0, 0, rsl_.x, rsl_.y, memDC_, 0, 0, SRCCOPY );
+
+	Timer::render( );
+
 }
 
 void Game::release( ) {

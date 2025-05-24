@@ -1,3 +1,4 @@
+#include "Game.hpp"
 #include "Timer.hpp"
 
 void Timer::init() {
@@ -11,13 +12,13 @@ void Timer::update() {
 	prevCnt_ = currCnt_;
 }
 
-void Timer::render(HWND hwnd, HDC hdc) {
+void Timer::render( ) {
 	++fps_;
 	accT_ += dt_;
 	if (accT_ >= 1.f) {
 		auto buffer = std::array<WCHAR, 100>();
 		swprintf(buffer.data(), L"FPS: %d, DT: %lf", fps_, dt_);
-		SetWindowText(hwnd, buffer.data());
+		SetWindowText( Game::getHwnd( ), buffer.data( ) );
 
 		fps_ = 0;
 		accT_ = 0.f;

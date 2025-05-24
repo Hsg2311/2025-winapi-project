@@ -4,7 +4,7 @@ class Timer {
 public:
 	static void init();
 	static void update();
-	static void render(HWND hwnd, HDC hdc);
+	static void render();
 
 	static double dt() {
 		return dt_;
