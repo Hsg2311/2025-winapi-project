@@ -1,5 +1,5 @@
-#include "common.hpp"
-#include "InputHandler.hpp"
+#include "../include/common.hpp"
+#include "../include/InputHandler.hpp"
 
 #include <array>
 

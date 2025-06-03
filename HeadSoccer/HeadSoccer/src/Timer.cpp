@@ -1,5 +1,5 @@
-#include "Game.hpp"
-#include "Timer.hpp"
+#include "../include/Game.hpp"
+#include "../include/Timer.hpp"
 
 #include <array>
 

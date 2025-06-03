@@ -1,6 +1,6 @@
-#include "Game.hpp"
-#include "Timer.hpp"
-#include "InputHandler.hpp"
+#include "../include/Game.hpp"
+#include "../include/Timer.hpp"
+#include "../include/InputHandler.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;

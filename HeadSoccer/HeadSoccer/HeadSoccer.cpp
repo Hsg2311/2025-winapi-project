@@ -1,7 +1,7 @@
-﻿#include "common.hpp"
+﻿#include "include/common.hpp"
 #include "HeadSoccer.h"
 
-#include "Game.hpp"
+#include "include/Game.hpp"
 
 #define MAX_LOADSTRING 100
 
