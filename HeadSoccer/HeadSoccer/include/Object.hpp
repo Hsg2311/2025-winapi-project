@@ -22,7 +22,7 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void setNmae(const std::string& name) {
+	void setName(const std::string& name) {
 		name_ = name;
 	}
 
@@ -46,7 +46,7 @@ public:
 		return scale_;
 	}
 
-private:
+protected:
 	std::string name_;
 	PointFloat pos_;
 	PointFloat scale_;
