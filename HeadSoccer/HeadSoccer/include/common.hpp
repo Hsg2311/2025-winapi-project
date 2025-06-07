@@ -5,11 +5,12 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
+#include <algorithm>	// min, max 함수의 오류 발생으로 인해 포함시킴
 
-//namespace Gdiplus {
-//	using std::min;
-//	using std::max;
-//}
+namespace Gdiplus {
+	using std::min;
+	using std::max;
+}
 
 #include "util.hpp"
 #include "PointFloat.hpp"
@@ -34,6 +35,14 @@ enum class ObjectType {
 
 enum class SceneType {
 	Title,
+
+	EOE
+};
+
+enum class EventType {
+	CreateObject,
+	DestroyObject,
+	ChangeScene,
 
 	EOE
 };
