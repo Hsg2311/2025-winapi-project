@@ -5,9 +5,9 @@
 
 class Collider {
 public:
-	Collider( PointFloat offset, PointFloat scale )
-		: offset_( offset ), finalPos_( ), scale_( scale ),
-		id_( nextId_++ ), collCnt_{ } {}
+	Collider( )
+		: offset_( ), finalPos_( ), scale_( )
+		, id_{ nextId_++ }, collCnt_{ 0 } {}
 
 	// need to implement a copy constructor and a move constructor
 
@@ -18,26 +18,34 @@ public:
 		finalPos_ = objPos + offset_;
 	}
 
-	void render( HDC hdc ) const {
-		auto pen = CreatePen( PS_SOLID, 1, RGB( 0, 255, 0 ) );
-		if ( collCnt_ > 0 ) {
-			pen = CreatePen( PS_SOLID, 1, RGB( 255, 0, 0 ) );
-		}
+	void render( HDC hdc ) const;
 
-		auto brush = (HBRUSH)GetStockObject( HOLLOW_BRUSH );
+	void setOffset( PointFloat offset ) {
+		offset_ = offset;
+	}
+	void setScale( PointFloat scale ) {
+		scale_ = scale;
+	}
 
-		auto oldPen = (HPEN)SelectObject( hdc, pen );
-		auto oldBrush = (HBRUSH)SelectObject( hdc, brush );
+	PointFloat getOffset( ) const {
+		return offset_;
+	}
+	PointFloat getScale( ) const {
+		return scale_;
+	}
+	PointFloat getFinalPos( ) const {
+		return finalPos_;
+	}
+	std::uint16_t id( ) const {
+		return id_;
+	}
 
-		Rectangle( hdc,
-			static_cast<int>( finalPos_.x - scale_.x / 2.f ),
-			static_cast<int>( finalPos_.y - scale_.y / 2.f ),
-			static_cast<int>( finalPos_.x + scale_.x / 2.f ),
-			static_cast<int>( finalPos_.y + scale_.y / 2.f )
-		);
-
-		SelectObject( hdc, oldPen );
-		SelectObject( hdc, oldBrush );
+	void addCollCnt( ) {
+		++collCnt_;
+	}
+	void subCollCnt( ) {
+		--collCnt_;
+		assert( collCnt_ >= 0 );
 	}
 
 private:

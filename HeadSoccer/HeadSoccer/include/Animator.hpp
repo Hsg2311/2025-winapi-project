@@ -6,16 +6,7 @@
 
 class Animator {
 public:
-	Animator( const std::string& name, Image* image,
-		PointFloat lt, PointFloat sliceSize, PointFloat step,
-		std::uint8_t frameCnt, float duration, PointFloat offset = { 0.0f, 0.0f } )
-		: anims_( ), currAnim_( nullptr )
-	{
-		auto anim = find( name );
-		assert( anim == nullptr );
-
-		anims_[ name ] = new Animation( name, image, lt, sliceSize, step, frameCnt, duration, offset );
-	}
+	Animator( ) : anims_( ), currAnim_{ nullptr } {}
 
 	// need to implement a copy constructor and a move constructor
 
@@ -29,9 +20,6 @@ public:
 		anims_.clear( );
 	}
 
-	Animation* find( const std::string& name );
-	void play( const std::string& name );
-
 	void update( ) {
 		currAnim_->update( );
 	}
@@ -39,6 +27,12 @@ public:
 	void render( HDC hdc, PointFloat objPos ) {
 		currAnim_->render( hdc, objPos );
 	}
+
+	void createAnimation( const std::string& name, Image* image,
+		PointFloat lt, PointFloat sliceSize, PointFloat step,
+		std::uint8_t frameCnt, float duration, PointFloat offset = { 0.0f, 0.0f } );
+	Animation* find( const std::string& name );
+	void play( const std::string& name );
 
 private:
 	std::map<std::string, Animation*> anims_;
