@@ -58,6 +58,8 @@ int APIENTRY wWinMain( _In_ HINSTANCE hInstance,
 		}
 	}
 
+	Game::release( );
+
 	return (int)msg.wParam;
 }
 
