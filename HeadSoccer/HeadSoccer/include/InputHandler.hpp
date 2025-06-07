@@ -2,6 +2,7 @@
 #define __input_handler_hpp
 
 #include "util.hpp"
+#include "PointFloat.hpp"
 
 #include <vector>
 
