@@ -3,6 +3,8 @@
 
 #include "include/Game.hpp"
 
+#pragma comment(linker,"/entry:wWinMainCRTStartup /subsystem:console")
+
 #define MAX_LOADSTRING 100
 
 HINSTANCE hInst;

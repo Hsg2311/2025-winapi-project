@@ -13,6 +13,10 @@ public:
 		return hWnd_; 
 	}
 
+	static POINT getRsl( ) {
+		return rsl_;
+	}
+
 private:
 	static HWND hWnd_;
 	static HDC hDC_;

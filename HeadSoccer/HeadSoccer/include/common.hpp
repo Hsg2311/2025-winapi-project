@@ -20,6 +20,7 @@ namespace Gdiplus {
 #include <utility>
 #include <cstdint>
 #include <cassert>
+#include <filesystem>
 
 #include <array>
 #include <vector>
