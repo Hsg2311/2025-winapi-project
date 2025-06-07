@@ -21,12 +21,30 @@ public:
 		delete collider_;
 	}
 
-	virtual void update( ) { }
-	virtual void render( HDC hdc ) { }
+	virtual void update( ) {}
+	virtual void render( HDC hdc ) {}
 
-	virtual void onCollision( Object* other ) { }
-	virtual void onCollisionEntry( Object* other ) { }
-	virtual void onCollisionExit( Object* other ) { }
+	virtual void componentUpdate( ) final {
+		if ( animator_ ) {
+			animator_->update( );
+		}
+		if ( collider_ ) {
+			collider_->update( pos_ );
+		}
+	}
+
+	virtual void componentRender( HDC hdc ) final {
+		if ( animator_ ) {
+			animator_->render( hdc, pos_ );
+		}
+		if ( collider_ ) {
+			collider_->render( hdc );
+		}
+	}
+
+	virtual void onCollision( Object* other ) {}
+	virtual void onCollisionEntry( Object* other ) {}
+	virtual void onCollisionExit( Object* other ) {}
 
 	void createAnimator( ) {
 		animator_ = new Animator( );
