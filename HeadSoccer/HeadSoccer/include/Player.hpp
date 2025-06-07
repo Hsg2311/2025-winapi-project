@@ -8,11 +8,13 @@ public:
 	void init();
 	void move();
 
-	void pspeed() {
+
+
+	void ispeed() {
 		speed += 0.1f;
 	}
 
-	void pspeed() {
+	void dspeed() {
 		if (speed > 0.1f) speed -= 0.1f;
 	}
 

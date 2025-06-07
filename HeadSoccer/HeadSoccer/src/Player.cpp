@@ -19,7 +19,7 @@ void Player::move() {
             pos_.x += speed * dt; // 오른쪽
         }
     }
-    else if (pnum_ == 2) 
+    else if (pnum_ == 2) {
         if (InputHandler::getKeyState(Key::I) == KeyState::Tap ||
             InputHandler::getKeyState(Key::I) == KeyState::Hold) {
             pos_.y -= speed * dt; // 점프
