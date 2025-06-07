@@ -2,6 +2,8 @@
 #include "../include/Timer.hpp"
 #include "../include/InputHandler.hpp"
 #include "../include/SceneHandler.hpp"
+#include "../include/EventHandler.hpp"
+#include "../include/ResourceHandler.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;
@@ -44,7 +46,7 @@ void Game::start( ) {
 	BitBlt( hDC_, 0, 0, rsl_.x, rsl_.y, memDC_, 0, 0, SRCCOPY );
 
 	Timer::render( );
-
+	EventHandler::update( );
 }
 
 void Game::release( ) {
@@ -53,6 +55,7 @@ void Game::release( ) {
 	DeleteObject( memBmp_ );
 
 	SceneHandler::release( );
+	ResourceHandler::release( );
 }
 
 HWND Game::hWnd_;
