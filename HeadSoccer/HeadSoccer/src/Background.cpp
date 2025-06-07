@@ -1,5 +1,6 @@
 #include "../include/Background.hpp"
 #include "../include/ResourceHandler.hpp"
+#include "../include/Camera.hpp"
 
 #include <iostream>
 
@@ -15,5 +16,8 @@ Background::Background( const std::string& key, const std::string& fileName ) {
 }
 
 void Background::render( HDC hdc ) {
-	image_->draw( hdc, pos_ );
+	auto cameraPos = Camera::getPos( );
+	auto relativePos = pos_ - cameraPos;
+
+	image_->draw( hdc, relativePos );
 }
