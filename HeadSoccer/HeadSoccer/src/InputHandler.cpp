@@ -1,4 +1,5 @@
 #include "../include/common.hpp"
+#include "../include/Game.hpp"
 #include "../include/InputHandler.hpp"
 
 #include <array>
@@ -18,7 +19,10 @@ auto arrVK = std::array<std::uint8_t, etoi( Key::EOE )>{
 	VK_LSHIFT,
 	VK_SPACE,
 	VK_RETURN,
-	VK_ESCAPE
+	VK_ESCAPE,
+
+	VK_LBUTTON,
+	VK_RBUTTON
 };
 
 void InputHandler::init( ) {
@@ -49,6 +53,12 @@ void InputHandler::update( ) {
 			inputInfo_[ i ].isPressed = false;
 		}
 	}
+
+	POINT pt;
+	GetCursorPos( &pt );
+	ScreenToClient( Game::getHwnd( ), &pt );
+	mousePos_ = static_cast<PointFloat>( pt );
 }
 
 std::vector<InputInfo> InputHandler::inputInfo_;
+PointFloat InputHandler::mousePos_;

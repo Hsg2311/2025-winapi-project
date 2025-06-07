@@ -29,6 +29,9 @@ enum class Key : std::uint8_t {
 	Enter,
 	Esc,
 
+	MouseLbtn,
+	MouseRbtn,
+
 	EOE
 };
 
@@ -46,8 +49,13 @@ public:
 		return inputInfo_[ etoi( key ) ].state;
 	}
 
+	static PointFloat getMousePos( ) {
+		return mousePos_;
+	}
+
 private:
 	static std::vector<InputInfo> inputInfo_;
+	static PointFloat mousePos_;
 };
 
 #endif	// __input_handler_hpp
