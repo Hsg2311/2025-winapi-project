@@ -26,24 +26,39 @@ struct PointFloat {
 		return true;
 	}
 
-	PointFloat operator+( PointFloat rhs ) const {
-		return { x + rhs.x, y + rhs.y };
+	PointFloat& operator+( PointFloat rhs ) {
+		x += rhs.x;
+		y += rhs.y;
+		return *this;
 	}
-	PointFloat operator+( float rhs ) const {
-		return { x + rhs, y + rhs };
-	}
-
-	PointFloat operator-( PointFloat rhs ) const {
-		return { x - rhs.x, y - rhs.y };
-	}
-
-	PointFloat operator*( float rhs ) const {
-		return { x * rhs, y * rhs };
+	PointFloat& operator+( float rhs ) {
+		x += rhs;
+		y += rhs;
+		return *this;
 	}
 
-	PointFloat operator/( float rhs ) const {
+	PointFloat& operator-( PointFloat rhs ) {
+		x -= rhs.x;
+		y -= rhs.y;
+		return *this;
+	}
+
+	PointFloat& operator*( float rhs ) {
+		x *= rhs;
+		y *= rhs;
+		return *this;
+	}
+	PointFloat& operator*( int rhs ) {
+		x *= static_cast<float>( rhs );
+		y *= static_cast<float>( rhs );
+		return *this;
+	}
+
+	PointFloat& operator/( float rhs ) {
 		assert( rhs != 0.f );
-		return { x / rhs, y / rhs };
+		x /= rhs;
+		y /= rhs;
+		return *this;
 	}
 
 	void operator-=( PointFloat rhs ) {
