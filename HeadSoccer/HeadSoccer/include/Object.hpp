@@ -2,6 +2,8 @@
 #define __object_hpp
 
 #include "common.hpp"
+#include "Animator.hpp"
+#include "Collider.hpp"
 
 class Object {
 public:
@@ -15,7 +17,8 @@ public:
 	Object& operator=( Object&& other ) = delete;
 
 	virtual ~Object( ) = 0 {
-		
+		delete animator_;
+		delete collider_;
 	}
 
 	virtual void update( ) { }
@@ -24,6 +27,13 @@ public:
 	virtual void onCollision( Object* other ) { }
 	virtual void onCollisionEntry( Object* other ) { }
 	virtual void onCollisionExit( Object* other ) { }
+
+	void createAnimator( ) {
+		animator_ = new Animator( );
+	}
+	void createCollider( ) {
+		collider_ = new Collider( );
+	}
 
 	void setName( const std::string& name ) {
 		name_ = name;
@@ -51,6 +61,13 @@ public:
 		return alive_;
 	}
 
+	Animator* getAnimator( ) const {
+		return animator_;
+	}
+	Collider* getCollider( ) const {
+		return collider_;
+	}
+
 private:
 	std::string name_;
 
@@ -60,6 +77,9 @@ protected:
 
 private:
 	bool alive_;
+
+	Animator* animator_;
+	Collider* collider_;
 };
 
 #endif	// __object_hpp
