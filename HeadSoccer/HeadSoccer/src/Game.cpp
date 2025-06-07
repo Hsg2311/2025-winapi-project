@@ -1,6 +1,7 @@
 #include "../include/Game.hpp"
 #include "../include/Timer.hpp"
 #include "../include/InputHandler.hpp"
+#include "../include/SceneHandler.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;
@@ -28,15 +29,18 @@ void Game::init( HWND hWnd, POINT rsl ) {
 
 	Timer::init( );
 	InputHandler::init( );
+	SceneHandler::init( );
 }
 
 void Game::start( ) {
 	Timer::update( );
 	InputHandler::update( );
 
+	SceneHandler::update( );
+
 	// double buffering
 	Rectangle( memDC_, -1, -1, rsl_.x + 1, rsl_.y + 1 );
-
+	SceneHandler::render( memDC_ );
 	BitBlt( hDC_, 0, 0, rsl_.x, rsl_.y, memDC_, 0, 0, SRCCOPY );
 
 	Timer::render( );
@@ -47,6 +51,8 @@ void Game::release( ) {
 	ReleaseDC( hWnd_, hDC_ );
 	DeleteDC( memDC_ );
 	DeleteObject( memBmp_ );
+
+	SceneHandler::release( );
 }
 
 HWND Game::hWnd_;
