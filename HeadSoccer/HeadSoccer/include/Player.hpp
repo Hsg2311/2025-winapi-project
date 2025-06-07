@@ -22,6 +22,13 @@ public:
 private:
 	float speed;
 	float jspeed;
+	float ldtimer_;
+	float rdtimer_;
+	float dashdis;
+	float dashtimer;
+	float dashintime;
+	bool ldashed;
+	bool rdashed;
 	bool jumped;
 };
 
