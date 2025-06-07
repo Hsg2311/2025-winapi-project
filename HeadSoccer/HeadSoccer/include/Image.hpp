@@ -7,6 +7,7 @@
 #include <atlimage.h>
 
 class Image : public Resource {
+public:
 	Image( ) : Resource( ), image_( ) {}
 	Image( std::string_view key, const std::string& filePath )
 		: Resource( key ), image_( ) {
