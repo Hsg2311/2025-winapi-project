@@ -18,9 +18,11 @@
 #include <string_view>
 #include <utility>
 #include <cstdint>
+#include <cassert>
 
-#include <vector>
 #include <array>
+#include <vector>
+#include <map>
 
 enum class ObjectType {
 	Background,
