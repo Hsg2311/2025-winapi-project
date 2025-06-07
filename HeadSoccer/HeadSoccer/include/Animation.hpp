@@ -31,6 +31,11 @@ public:
 		}
 	}
 
+	// need to implement a copy constructor and a move constructor
+
+	Animation& operator=( const Animation& ) = delete;
+	Animation& operator=( Animation&& ) = delete;
+
 	~Animation( ) {}
 
 	void update( );

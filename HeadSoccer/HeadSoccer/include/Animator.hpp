@@ -17,6 +17,11 @@ public:
 		anims_[ name ] = new Animation( name, image, lt, sliceSize, step, frameCnt, duration, offset );
 	}
 
+	// need to implement a copy constructor and a move constructor
+
+	Animator& operator=( const Animator& ) = delete;
+	Animator& operator=( Animator&& ) = delete;
+
 	~Animator( ) {
 		for ( auto [null, anim] : anims_ ) {
 			delete anim;
