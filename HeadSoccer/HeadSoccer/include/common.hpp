@@ -17,6 +17,7 @@
 #include <string>
 #include <string_view>
 #include <utility>
+#include <cstdint>
 
 #include <vector>
 #include <array>
