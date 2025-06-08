@@ -57,6 +57,15 @@ public:
 		return objGroups_[ etoi( type ) ];
 	}
 
+	void destroyObjGroups( ) {
+		for ( auto& group : objGroups_ ) {
+			for ( auto obj : group ) {
+				delete obj;
+			}
+			group.clear( );
+		}
+	}
+
 private:
 	std::string name_;
 	std::array< std::vector<Object*>, etoi( ObjectType::EOE ) > objGroups_;

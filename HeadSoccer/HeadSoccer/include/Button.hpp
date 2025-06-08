@@ -1,30 +1,30 @@
-#include "InputHandler.hpp"
+#ifndef __button_hpp
+#define __button_hpp
 
+#include "common.hpp"
+#include "Object.hpp"
+#include "Image.hpp"
 
-class Button : public InputHandler {
+class Button : public Object {
 public:
-	Button(const std::vector<Key>& info)
-		: UserInterface(info)
-		, bMouseOn_(false)
-		, bLbtnDown_(false) {
-	}
-	virtual ~ClickableUI() {}
+	Button( const std::string& key, const std::string& fileName );
+	virtual ~Button( ) {}
 
-	virtual void update() override;
-	virtual void render(HDC hdc) override;
+	void update( ) override;
+	void render( HDC hdc ) override;
 
-	bool mouseOnCheck();
+	bool mouseOnCheck( );
 
-	void mouseOn();
-	void mouseLbtnDown();
-	void mouseLbtnUp();
-	void mouseLbtnClicked();
-
-	virtual Button* clone() override {
-		return new ClickableUI{ *this };
-	}
+	void mouseOn( ) {}
+	void mouseLbtnUp( ) {}
+	void mouseLbtnClicked( );
 
 private:
+	Image* imageOn_;
+	Image* imageOff_;
+
 	bool bMouseOn_;
 	bool bLbtnDown_;
 };
+
+#endif	// __button_hpp

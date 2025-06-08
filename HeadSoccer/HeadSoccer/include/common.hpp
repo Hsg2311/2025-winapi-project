@@ -20,7 +20,9 @@ namespace Gdiplus {
 #include <utility>
 #include <cstdint>
 #include <cassert>
+
 #include <filesystem>
+namespace fs = std::filesystem;
 
 #include <array>
 #include <vector>
@@ -28,6 +30,7 @@ namespace Gdiplus {
 
 enum class ObjectType {
 	Background,
+	Button,
 	Player,
 	Ball,
 
@@ -36,6 +39,8 @@ enum class ObjectType {
 
 enum class SceneType {
 	Title,
+	SelectCharacter,
+	SelectStage,
 
 	EOE
 };

@@ -4,8 +4,6 @@
 
 #include <iostream>
 
-namespace fs = std::filesystem;
-
 Background::Background( const std::string& key, const std::string& fileName ) {
 	// 프로젝트 실행 경로는 Background.cpp 파일이 있는 경로(src 디렉터리의 경로)가 아니라
 	// D:\source\repos\2025-winapi-project\HeadSoccer\HeadSoccer -> src 파일에서 한 단계 위의 디렉터리가 된다.
