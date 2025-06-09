@@ -39,11 +39,21 @@ void CharacterScene::entry( ) {
 	rub->setName( "right_up_button" );
 	rub->setPos( PointFloat( 980.f, 180.f ) );
 	addObject( ObjectType::Button, rub );
-
+	
 	auto rdb = new Button( "right_down_button", "right_down_button" );
 	rdb->setName( "right_down_button" );
 	rdb->setPos( PointFloat( 980.f, 530.f ) );
 	addObject( ObjectType::Button, rdb );
+
+	auto character1 = new Background("character1", "digda.png");
+	character1->setName("character1");
+	character1->setPos(PointFloat(310.f, 350.f));
+	addObject(ObjectType::Background, character1);
+
+	auto character2 = new Background("character2", "dragon man.png");
+	character2->setName("character2");
+	character2->setPos(PointFloat(985.f, 350.f));
+	addObject(ObjectType::Background, character2);
 
 	auto statUi = new Background( "player1_stat_ui", "stat.png" );
 	statUi->setName( "stat_ui" );
