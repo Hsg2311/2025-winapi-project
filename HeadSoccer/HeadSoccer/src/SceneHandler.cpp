@@ -1,12 +1,12 @@
 #include "../include/SceneHandler.hpp"
 #include "../include/TitleScene.hpp"
 #include "../include/CharacterScene.hpp"
-#include "../include/MapScene.hpp"
+#include "../include/StageScene.hpp"
 
 void SceneHandler::init( ) {
 	scenes_[ etoi( SceneType::Title ) ] = new TitleScene( "Title Scene" );
 	scenes_[ etoi( SceneType::SelectCharacter ) ] = new CharacterScene( "Select Character Scene" );
-	scenes_[ etoi( SceneType::SelectStage ) ] = new MapScene( "Select Stage Scene" );
+	scenes_[ etoi( SceneType::SelectStage ) ] = new StageScene( "Select Stage Scene" );
 
 	assert( scenes_[ etoi( SceneType::Title ) ] != nullptr );
 	assert( scenes_[ etoi( SceneType::SelectCharacter ) ] != nullptr );

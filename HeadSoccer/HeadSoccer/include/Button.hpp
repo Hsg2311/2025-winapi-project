@@ -19,6 +19,8 @@ public:
 	void mouseLbtnUp( ) {}
 	void mouseLbtnClicked( );
 
+	void resetImageState( );
+
 private:
 	Image* imageOn_;
 	Image* imageOff_;

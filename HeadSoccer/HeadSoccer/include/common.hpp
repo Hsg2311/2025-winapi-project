@@ -54,4 +54,14 @@ enum class EventType {
 	EOE
 };
 
+enum class StageNumber {
+	None,
+	Stage1,
+	Stage2,
+	Stage3,
+	Stage4,
+
+	EOE
+};
+
 #endif	// __common_hpp

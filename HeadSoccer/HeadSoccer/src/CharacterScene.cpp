@@ -55,13 +55,13 @@ void CharacterScene::entry( ) {
 	statUi->setPos( PointFloat( 800.f, 670.f ) );
 	addObject( ObjectType::Background, statUi );
 
-	auto backBtn = new Button( "back_button", "back_button" );
-	backBtn->setName( "back_button" );
+	auto backBtn = new Button( "character_back_button", "back_button" );
+	backBtn->setName( "character_back_button" );
 	backBtn->setPos( PointFloat( 150.f, 665.f ) );
 	addObject( ObjectType::Button, backBtn );
 
-	auto nextBtn = new Button( "next_button", "next_button" );
-	nextBtn->setName( "next_button" );
+	auto nextBtn = new Button( "character_next_button", "next_button" );
+	nextBtn->setName( "character_next_button" );
 	nextBtn->setPos( PointFloat( 1130.f, 665.f ) );
 	addObject( ObjectType::Button, nextBtn );
 
