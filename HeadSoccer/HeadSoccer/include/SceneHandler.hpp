@@ -26,11 +26,16 @@ public:
 		return currScene_;
 	}
 
+	static SceneType getCurrSceneType( ) {
+		return currSceneType_;
+	}
+
 	static void changeScene( SceneType type );
 
 private:
 	static std::array<Scene*, etoi( SceneType::EOE )> scenes_;
 	static Scene* currScene_;
+	static SceneType currSceneType_;
 };
 
 #endif	// __scene_handler_hpp

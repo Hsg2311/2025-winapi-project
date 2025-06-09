@@ -2,6 +2,7 @@
 #include "HeadSoccer.h"
 
 #include "include/Game.hpp"
+#include "include/SceneHandler.hpp"
 
 #pragma comment(linker,"/entry:wWinMainCRTStartup /subsystem:console")
 
@@ -160,6 +161,18 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 		EndPaint( hWnd, &ps );
 	}
 	break;
+
+	case WM_KEYDOWN: {
+		switch ( wParam ) {
+		case VK_ESCAPE:
+			if ( SceneHandler::getCurrSceneType( ) == SceneType::Title ) {
+				PostQuitMessage( 0 );
+			}
+			break;
+		}
+		break;
+	}
+
 	case WM_DESTROY:
 		PostQuitMessage( 0 );
 		break;

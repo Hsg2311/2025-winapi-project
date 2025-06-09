@@ -72,11 +72,37 @@ bool Button::mouseOnCheck( ) {
 }
 
 void Button::mouseLbtnClicked( ) {
-	if ( getName( ) == "arcade_btn" ) {
+	auto name = getName( );
+
+	if ( name == "arcade_btn" ) {
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::ChangeScene,
 				.wParam = static_cast<DWORD_PTR>( SceneType::SelectCharacter )
+			}
+		);
+	}
+	else if ( name == "back_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::ChangeScene,
+				.wParam = static_cast<DWORD_PTR>( SceneType::Title )
+			}
+		);
+	}
+	else if ( name == "next_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::ChangeScene,
+				.wParam = static_cast<DWORD_PTR>( SceneType::SelectStage )
+			}
+		);
+	}
+	else if ( name == "play_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::ChangeScene,
+				.wParam = static_cast<DWORD_PTR>( SceneType::InGame )
 			}
 		);
 	}

@@ -41,6 +41,7 @@ enum class SceneType {
 	Title,
 	SelectCharacter,
 	SelectStage,
+	InGame,
 
 	EOE
 };
