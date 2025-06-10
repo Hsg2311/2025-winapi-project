@@ -14,8 +14,8 @@ void Player::render(HDC hdc) {
 void Player::update() {
     float dt = Timer::fdt();
 
-    float width = 1280.0f;
-    float height = 720.5f;
+    float width = 1240.0f;
+    float height = 615.5f;
 
     pos_.y += 1000.0f * dt;
 
@@ -32,7 +32,11 @@ void Player::update() {
     dashintime -= dt;
     dashdis = 100.0f / 0.075f;
 
-    if (pnum_ == 1) {
+    if (pnum_==1) {
+        if (InputHandler::getKeyState(Key::S) == KeyState::Tap) {
+                
+        }
+
         if (jumped == false && InputHandler::getKeyState(Key::W) == KeyState::Tap) {
             jspeed = -1500.0f; // 점프
             jumped = true;
@@ -87,6 +91,9 @@ void Player::update() {
     }
 
     if (pnum_ == 2) {
+        if (InputHandler::getKeyState(Key::K) == KeyState::Tap) {
+
+        }
 
         if (jumped == false && InputHandler::getKeyState(Key::I) == KeyState::Tap) {
             jspeed = -1500.0f; //점프
@@ -141,6 +148,6 @@ void Player::update() {
         }
     }
 
-    if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
+    if (pos_.x - scale_.x <= 40.0f) pos_.x = 40.0f+scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
 }
