@@ -3,19 +3,11 @@
 #include "../include/InputHandler.hpp"
 #include "../include/Camera.hpp"
 
-void Player::render(HDC hdc) {
-	auto relativePos = pos_ - Camera::getPos();
-	if (image_) {
-		image_->draw(hdc, relativePos);
-	}
-	componentRender(hdc);
-}
-
 void Player::update() {
     float dt = Timer::fdt();
 
     float width = 1280.0f;
-    float height = 720.5f;
+    float height = 580.f;
 
     pos_.y += 1000.0f * dt;
 
@@ -143,4 +135,15 @@ void Player::update() {
 
     if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
+
+    componentUpdate( );
+}
+
+void Player::render( HDC hdc ) {
+    componentRender( hdc );
+    
+    auto relativePos = pos_ - Camera::getPos( );
+    if ( image_ ) {
+        image_->draw( hdc, relativePos );
+    }
 }

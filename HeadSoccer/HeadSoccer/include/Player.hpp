@@ -12,7 +12,8 @@ public:
 	}
 	Player(const std::string& name, int speed, int jump, int kick, const std::string& lr) {
 		auto filePath = fs::path( "assets/" + name + "_player_" + lr + ".png" );
-		image_ = ResourceHandler::loadImage(name, fs::canonical( filePath ).string( ), true );
+		auto keyVal = name + "_player_" + lr;
+		image_ = ResourceHandler::loadImage( keyVal, fs::canonical( filePath ).string( ), true );
 		
 		kickpower = kick*50.f;
 		jumppower = -(jump * 250.f);
@@ -23,6 +24,22 @@ public:
 		dashdis = 100.0f / 0.075f;
 		dashtimer = 0.0f;
 		dashintime = 0.0f;
+
+		/*createAnimator( );
+		auto str = std::string( "player_idle_" + lr );
+		auto animFilePath = fs::path( "assets/" + str + ".png" );
+		auto animImage = ResourceHandler::loadImage( str, fs::canonical( animFilePath ).string( ), true );
+		getAnimator( )->createAnimation( str, animImage, PointFloat( 0.f, 0.f ),
+			PointFloat( 93.f, 33.f ), PointFloat( 93.f, 0.f ), 6, 0.065f, PointFloat( 0.f, 53.f ) );
+		getAnimator( )->play( str );*/
+
+		createAnimator( );
+		auto str = std::string( "player_run_" + lr );
+		auto animFilePath = fs::path( "assets/" + str + ".png" );
+		auto animImage = ResourceHandler::loadImage( str, fs::canonical( animFilePath ).string( ), true );
+		getAnimator( )->createAnimation( str, animImage, PointFloat( 522.5f, 0.f ),
+			PointFloat( 104.5f, 30.f ), PointFloat( -104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+		getAnimator( )->play( str );
 	}
 
 	void update()override;
