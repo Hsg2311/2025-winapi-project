@@ -13,13 +13,34 @@ public:
 		: Resource( key ), image_( ) {
 		auto path = std::wstring( filePath.begin( ), filePath.end( ) );
 		image_.Load( path.c_str( ) );
+		setPremultipliedAlpha( );
 	}
 
 	virtual ~Image( ) {}
 
+	void setPremultipliedAlpha( ) {
+		unsigned char* pCol = nullptr;
+		auto width = image_.GetWidth( );
+		auto height = image_.GetHeight( );
+
+		for ( auto y = 0; y < height; ++y ) {
+			for ( auto x = 0; x < width; ++x ) {
+				pCol = (unsigned char*)image_.GetPixelAddress( x, y );
+				auto alpha = pCol[ 3 ];
+
+				if ( alpha < 255 ) {
+					pCol[ 0 ] = ( ( pCol[ 0 ] * alpha ) + 127 ) / 255;
+					pCol[ 1 ] = ( ( pCol[ 1 ] * alpha ) + 127 ) / 255;
+					pCol[ 2 ] = ( ( pCol[ 2 ] * alpha ) + 127 ) / 255;
+				}
+			}
+		}
+	}
+
 	void load( const std::string& filePath ) {
 		auto path = std::wstring( filePath.begin( ), filePath.end( ) );
 		image_.Load( path.c_str( ) );
+		setPremultipliedAlpha( );
 	}
 
 	void draw( HDC hdc, const PointFloat& objPos ) {
