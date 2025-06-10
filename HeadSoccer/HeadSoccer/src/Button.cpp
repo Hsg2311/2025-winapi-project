@@ -4,6 +4,11 @@
 #include "../include/EventHandler.hpp"
 #include "../include/InputHandler.hpp"
 #include "../include/Camera.hpp"
+#include "../include/SceneHandler.hpp"
+#include "../include/CharacterInfo.hpp"
+
+extern CharacterInfo player1;
+extern CharacterInfo player2;
 
 Button::Button( const std::string& key, const std::string& fileName )
 	: bMouseOn_{ false }, bLbtnDown_{ false }
@@ -103,6 +108,98 @@ void Button::mouseLbtnClicked( ) {
 			Event{
 				.type = EventType::ChangeScene,
 				.wParam = static_cast<DWORD_PTR>( SceneType::InGame )
+			}
+		);
+	}
+	else if (name == "left_up_button") {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 왼쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 왼쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 왼쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat"))
+			}
+		);
+	}
+	else if (name == "right_up_button") {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 오른쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character_right"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 오른쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag_right"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (1), // 오른쪽 캐릭터 인덱스 증가
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat_right"))
+			}
+		);
+	}
+	else if (name == "left_down_button") {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (- 1), // 왼쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (-1), // 왼쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (-1), // 왼쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat"))
+			}
+		);
+	}
+	else if (name == "right_down_button") {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (-1), // 오른쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character_right"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (-1), // 오른쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag_right"))
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> (-1), // 오른쪽 캐릭터 인덱스 감소
+				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat_right"))
 			}
 		);
 	}

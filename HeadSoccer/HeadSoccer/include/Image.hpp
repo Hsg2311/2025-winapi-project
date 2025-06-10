@@ -29,6 +29,32 @@ public:
 			image_.GetWidth( ), image_.GetHeight( ) );
 	}
 
+	void draw(HDC hdc, const PointFloat& objPos, int stat, int offset) {
+		int originalWidth = image_.GetWidth();
+		int originalHeight = image_.GetHeight();
+
+		// 10칸으로 나누어 한 칸의 폭 계산
+		int segmentWidth = originalWidth / 10;
+
+		// statlen이 0 이하 또는 10 초과 시 경계 처리
+		int effectiveSegments = (stat <= 0) ? 1 : ((stat > 10) ? 10 : stat);
+		int effectiveWidth = effectiveSegments * segmentWidth;
+		if (effectiveWidth > originalWidth) effectiveWidth = originalWidth;
+
+		// 소스 영역: 왼쪽에서 effectiveSegments 칸만큼만 잘라냄
+		int srcX = 0; // 왼쪽에서 시작
+		int srcWidth = effectiveWidth;
+		int srcHeight = originalHeight;
+
+		// 대상 크기와 위치 계산
+		int drawX = static_cast<int>(objPos.x ) -15;
+		int drawY = static_cast<int>(objPos.y - originalHeight / 2.f)+offset;
+
+		// 이미지 그리기 (소스 영역 지정)
+		image_.Draw(hdc, drawX, drawY, effectiveWidth, originalHeight,
+			srcX, 0, srcWidth, srcHeight);
+	}
+
 	void draw( HDC hdc, int xDest, int yDest, int nDestWidth, int nDestHeight,
 		int xSrc, int ySrc, int nSrcWidth, int nSrcHeight ) 
 	{

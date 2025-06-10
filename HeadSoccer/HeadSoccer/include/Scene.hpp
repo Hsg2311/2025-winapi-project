@@ -66,6 +66,16 @@ public:
 		}
 	}
 
+	Object* getObjectByName(const std::string& name) {
+		for (const auto& group : objGroups_) {
+			for (auto* obj : group) {
+				if (obj && obj->getName() == name) {
+					return obj;
+				}
+			}
+		}
+		return nullptr;
+	}
 private:
 	std::string name_;
 	std::array< std::vector<Object*>, etoi( ObjectType::EOE ) > objGroups_;

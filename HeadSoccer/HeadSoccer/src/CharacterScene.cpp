@@ -3,8 +3,15 @@
 #include "../include/Camera.hpp"
 #include "../include/Background.hpp"
 #include "../include/Button.hpp"
+#include "../include/ImageStorage.hpp"
+#include "../include/CharacterInfo.hpp"
 
 #include <list>
+
+CharacterInfo player1;
+CharacterInfo player2;
+
+
 
 void CharacterScene::entry( ) {
 	auto clientWidth = Game::getRsl( ).x;
@@ -44,17 +51,7 @@ void CharacterScene::entry( ) {
 	rdb->setName( "right_down_button" );
 	rdb->setPos( PointFloat( 980.f, 530.f ) );
 	addObject( ObjectType::Button, rdb );
-
-	auto character1 = new Background("character1", "digda.png");
-	character1->setName("character1");
-	character1->setPos(PointFloat(310.f, 350.f));
-	addObject(ObjectType::Background, character1);
-
-	auto character2 = new Background("character2", "dragon man.png");
-	character2->setName("character2");
-	character2->setPos(PointFloat(985.f, 350.f));
-	addObject(ObjectType::Background, character2);
-
+	
 	auto statUi = new Background( "player1_stat_ui", "stat.png" );
 	statUi->setName( "stat_ui" );
 	statUi->setPos( PointFloat( 480.f, 670.f ) );
@@ -64,6 +61,15 @@ void CharacterScene::entry( ) {
 	statUi->setName( "stat_ui2" );
 	statUi->setPos( PointFloat( 800.f, 670.f ) );
 	addObject( ObjectType::Background, statUi );
+
+	auto imageStorage = new ImageStorage("character");
+	imageStorage->setimagepos(PointFloat(310.f, 350.f), PointFloat(590.f, 192.5f), PointFloat(480.f, 670.f)); // 왼쪽 캐릭터 위치
+	addObject(ObjectType::ImageStorage, imageStorage);
+
+	auto imageStorageRight = new ImageStorage("character_right");
+	imageStorageRight->setimagepos(PointFloat(985.f, 350.f), PointFloat(690.f, 192.5f), PointFloat(800.f, 670.f)); // 오른쪽 캐릭터 위치
+	addObject(ObjectType::ImageStorage, imageStorageRight);
+
 
 	auto backBtn = new Button( "back_button", "back_button" );
 	backBtn->setName( "back_button" );

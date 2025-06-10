@@ -33,6 +33,7 @@ enum class ObjectType {
 	Button,
 	Player,
 	Ball,
+	ImageStorage,
 
 	EOE
 };
@@ -50,6 +51,7 @@ enum class EventType {
 	CreateObject,
 	DestroyObject,
 	ChangeScene,
+	UpdateIndex,
 
 	EOE
 };

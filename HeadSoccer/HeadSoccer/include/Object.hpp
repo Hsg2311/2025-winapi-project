@@ -10,6 +10,10 @@ public:
 	Object( );
 	Object( const std::string& name, const PointFloat& pos, const PointFloat& scale );
 
+	Object(std::string_view name, const PointFloat& pos = PointFloat(), const PointFloat& scale = PointFloat())
+		: name_(std::string(name)), pos_(pos), scale_(scale), alive_(true), animator_(nullptr), collider_(nullptr) {
+	}
+
 	Object( const Object& other );
 	Object& operator=( const Object& other ) = delete;
 
