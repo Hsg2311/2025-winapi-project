@@ -7,7 +7,7 @@
 
 class Button : public Object {
 public:
-	Button( const std::string& key, const std::string& fileName );
+	Button( const std::string& key, const std::string& fileName, bool premultipliedAlpha );
 	virtual ~Button( ) {}
 
 	void update( ) override;

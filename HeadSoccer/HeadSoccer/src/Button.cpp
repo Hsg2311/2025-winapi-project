@@ -13,13 +13,19 @@ extern StageNumber stageNum;
 extern CharacterInfo player1;
 extern CharacterInfo player2;
 
-Button::Button( const std::string& key, const std::string& fileName )
+Button::Button( const std::string& key, const std::string& fileName, bool premultipliedAlpha )
 	: bMouseOn_{ false }, bLbtnDown_{ false }
 {
 	auto offBtnFilePath = fs::path( "assets/" + fileName + "_off.png" );
 	auto onBtnFilePath = fs::path( "assets/" + fileName + "_on.png" );
-	imageOff_ = ResourceHandler::loadImage( key + "_off", fs::canonical( offBtnFilePath ).string( ) );
-	imageOn_ = ResourceHandler::loadImage( key + "_on", fs::canonical( onBtnFilePath ).string( ) );
+
+	imageOff_ = ResourceHandler::loadImage( 
+		key + "_off", fs::canonical( offBtnFilePath ).string( ), premultipliedAlpha
+	);
+
+	imageOn_ = ResourceHandler::loadImage(
+		key + "_on", fs::canonical( onBtnFilePath ).string( ), premultipliedAlpha
+	);
 }
 
 void Button::update( ) {
@@ -87,6 +93,98 @@ void Button::mouseLbtnClicked( ) {
 			Event{
 				.type = EventType::ChangeScene,
 				.wParam = static_cast<DWORD_PTR>( SceneType::SelectCharacter )
+			}
+		);
+	}
+	else if ( name == "left_up_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
+			}
+		);
+	}
+	else if ( name == "right_up_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
+			}
+		);
+	}
+	else if ( name == "left_down_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
+			}
+		);
+	}
+	else if ( name == "right_down_button" ) {
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
+			}
+		);
+		EventHandler::addEvent(
+			Event{
+				.type = EventType::UpdateIndex,
+				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
 			}
 		);
 	}
@@ -177,98 +275,6 @@ void Button::mouseLbtnClicked( ) {
 			Event{
 				.type = EventType::ChangeScene,
 				.wParam = static_cast<DWORD_PTR>( SceneType::InGame )
-			}
-		);
-	}
-	else if (name == "left_up_button") {
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat"))
-			}
-		);
-	}
-	else if (name == "right_up_button") {
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character_right"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag_right"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat_right"))
-			}
-		);
-	}
-	else if (name == "left_down_button") {
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (- 1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (-1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (-1), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat"))
-			}
-		);
-	}
-	else if (name == "right_down_button") {
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (-1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("character_right"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (-1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("flag_right"))
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> (-1), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>(SceneHandler::getCurrScene()->getObjectByName("stat_right"))
 			}
 		);
 	}

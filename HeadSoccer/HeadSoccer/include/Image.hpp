@@ -9,11 +9,14 @@
 class Image : public Resource {
 public:
 	Image( ) : Resource( ), image_( ) {}
-	Image( std::string_view key, const std::string& filePath )
+	Image( std::string_view key, const std::string& filePath, bool premultipliedAlpha )
 		: Resource( key ), image_( ) {
 		auto path = std::wstring( filePath.begin( ), filePath.end( ) );
 		image_.Load( path.c_str( ) );
-		setPremultipliedAlpha( );
+
+		if ( !image_.IsNull( ) && premultipliedAlpha ) {
+			setPremultipliedAlpha( );
+		}
 	}
 
 	virtual ~Image( ) {}
@@ -37,10 +40,13 @@ public:
 		}
 	}
 
-	void load( const std::string& filePath ) {
+	void load( const std::string& filePath, bool premultipliedAlpha ) {
 		auto path = std::wstring( filePath.begin( ), filePath.end( ) );
 		image_.Load( path.c_str( ) );
-		setPremultipliedAlpha( );
+
+		if ( !image_.IsNull( ) && premultipliedAlpha ) {
+			setPremultipliedAlpha( );
+		}
 	}
 
 	void draw( HDC hdc, const PointFloat& objPos ) {

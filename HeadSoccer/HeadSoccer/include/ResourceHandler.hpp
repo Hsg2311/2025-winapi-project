@@ -10,7 +10,7 @@ ResourceHandler is responsible for managing game resources such as images and so
 
 class ResourceHandler {
 public:
-	static Image* loadImage( const std::string& key, const std::string& filePath );
+	static Image* loadImage( const std::string& key, const std::string& filePath, bool premultipliedAlpha );
 	static Image* findImage( const std::string& key );
 
 	static void release( ) {

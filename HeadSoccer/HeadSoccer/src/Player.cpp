@@ -1,6 +1,6 @@
-#include "Player.hpp"
-#include "Timer.hpp"
-#include "InputHandler.hpp"
+#include "../include/Player.hpp"
+#include "../include/Timer.hpp"
+#include "../include/InputHandler.hpp"
 
 void Player::update() {
     float dt = Timer::fdt();

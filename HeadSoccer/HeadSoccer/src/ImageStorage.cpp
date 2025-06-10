@@ -26,17 +26,17 @@ void ImageStorage::initializeImages() {
     };
     for (const auto& file : image) {
         auto filePath = std::filesystem::path("assets/" + file);
-        Image* image = ResourceHandler::loadImage(file, std::filesystem::canonical(filePath).string());
+        Image* image = ResourceHandler::loadImage(file, std::filesystem::canonical(filePath).string(), true);
         addImage(file, image);
     }
     for (const auto& file : flag) {
         auto flagPath = std::filesystem::path("assets/" + file);
-        Image* flagImage = ResourceHandler::loadImage(file, std::filesystem::canonical(flagPath).string());
+        Image* flagImage = ResourceHandler::loadImage(file, std::filesystem::canonical(flagPath).string(), false);
         addFlagImage(file, flagImage);
     }
     for (const auto& file : stat) {
         auto statPath = std::filesystem::path("assets/" + file);
-        Image* statImage = ResourceHandler::loadImage(file, std::filesystem::canonical(statPath).string());
+        Image* statImage = ResourceHandler::loadImage(file, std::filesystem::canonical(statPath).string(), true);
         addStatImage(file, statImage);
     }
 

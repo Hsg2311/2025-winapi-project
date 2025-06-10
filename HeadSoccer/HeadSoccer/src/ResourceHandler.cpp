@@ -1,12 +1,12 @@
 #include "../include/ResourceHandler.hpp"
 
-Image* ResourceHandler::loadImage( const std::string& key, const std::string& filePath ) {
+Image* ResourceHandler::loadImage( const std::string& key, const std::string& filePath, bool premultipliedAlpha ) {
 	auto img = findImage( key );
 	if ( img ) {
 		return img;
 	}
 	
-	img = new Image( key, filePath );
+	img = new Image( key, filePath, premultipliedAlpha );
 	images_.insert( { key, img } );
 
 	return img;

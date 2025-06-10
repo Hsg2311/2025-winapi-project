@@ -7,7 +7,7 @@
 
 class Background : public Object {
 public:
-	Background( const std::string& key, const std::string& fileName );
+	Background( const std::string& key, const std::string& fileName, bool premultipliedAlpha );
 	virtual ~Background( ) { }
 
 	virtual void update( ) override { }
