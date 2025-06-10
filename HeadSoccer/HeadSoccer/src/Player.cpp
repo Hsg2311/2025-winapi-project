@@ -24,9 +24,13 @@ void Player::update() {
     dashintime -= dt;
     dashdis = 100.0f / 0.075f;
 
-    if (pnum_ == 1) {
+    if (pnum_==1) {
+        if (InputHandler::getKeyState(Key::S) == KeyState::Tap) {
+                
+        }
+
         if (jumped == false && InputHandler::getKeyState(Key::W) == KeyState::Tap) {
-            jspeed = -1500.0f; // Á¡ÇÁ
+            jspeed = -1500.0f; // ï¿½ï¿½ï¿½ï¿½
             jumped = true;
         }
 
@@ -50,7 +54,7 @@ void Player::update() {
 
         if (InputHandler::getKeyState(Key::A) == KeyState::Tap ||
             InputHandler::getKeyState(Key::A) == KeyState::Hold) {
-            pos_.x -= speed * dt; // ¿ÞÂÊ
+            pos_.x -= speed * dt; // ï¿½ï¿½ï¿½ï¿½
         }
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::D) == KeyState::Away && rdtimer_ <= 0.0f) {
@@ -74,20 +78,23 @@ void Player::update() {
 
         if (InputHandler::getKeyState(Key::D) == KeyState::Tap ||
             InputHandler::getKeyState(Key::D) == KeyState::Hold) {
-            pos_.x += speed * dt; // ¿À¸¥ÂÊ
+            pos_.x += speed * dt; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
     }
 
     if (pnum_ == 2) {
+        if (InputHandler::getKeyState(Key::K) == KeyState::Tap) {
+
+        }
 
         if (jumped == false && InputHandler::getKeyState(Key::I) == KeyState::Tap) {
-            jspeed = -1500.0f; //Á¡ÇÁ
+            jspeed = -1500.0f; //ï¿½ï¿½ï¿½ï¿½
             jumped = true;
         }
 
         if (InputHandler::getKeyState(Key::J) == KeyState::Tap ||
             InputHandler::getKeyState(Key::J) == KeyState::Hold) {
-            pos_.x -= speed * dt; // ¿ÞÂÊ
+            pos_.x -= speed * dt; // ï¿½ï¿½ï¿½ï¿½
         }
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::J) == KeyState::Away && ldtimer_ <= 0.0f) {
@@ -110,7 +117,7 @@ void Player::update() {
 
         if (InputHandler::getKeyState(Key::L) == KeyState::Tap ||
             InputHandler::getKeyState(Key::L) == KeyState::Hold) {
-            pos_.x += speed * dt; // ¿À¸¥ÂÊ
+            pos_.x += speed * dt; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::L) == KeyState::Away && rdtimer_ <= 0.0f) {
@@ -133,7 +140,7 @@ void Player::update() {
         }
     }
 
-    if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
+    if (pos_.x - scale_.x <= 40.0f) pos_.x = 40.0f+scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
 
     componentUpdate( );
