@@ -11,7 +11,8 @@ public:
 		ldashed(false), rdashed(false), jumped(false) {
 	}
 	Player(const std::string& name, int speed, int jump, int kick, const std::string& lr) {
-		image_ = ResourceHandler::loadImage(name, name + "_player_" + lr + ".png", true);
+		auto filePath = fs::path( "assets/" + name + "_player_" + lr + ".png" );
+		image_ = ResourceHandler::loadImage(name, fs::canonical( filePath ).string( ), true );
 		
 		kickpower = kick*50.f;
 		jumppower = -(jump * 250.f);

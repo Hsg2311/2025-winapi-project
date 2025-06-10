@@ -44,7 +44,16 @@ void InGameScene::entry( ) {
 	pauseBtn->setPos( PointFloat( 1230.f, 40.f ) );
 	addObject( ObjectType::Button, pauseBtn );
 
-	auto p1 = new Player(player1.getImage(), player1.getSpeedStat(),
+	auto p1ImageName = player1.getImage( );
+	auto temp = std::string( );
+	for ( auto c : p1ImageName ) {
+		if ( c == '_' ) {
+			break;
+		}
+		temp.push_back( c );
+	}
+
+	auto p1 = new Player( temp, player1.getSpeedStat(),
 		player1.getJumpStat(), player1.getKickStat(), "left");
 	p1->setName("player1");
 	p1->setPos(PointFloat(300.f, 500.f));
