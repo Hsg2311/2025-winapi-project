@@ -60,12 +60,14 @@ void CharacterScene::entry( ) {
 	statUi->setPos( PointFloat( 800.f, 670.f ) );
 	addObject( ObjectType::Background, statUi );
 
-	auto imageStorage = new ImageStorage("character");
-	imageStorage->setimagepos(PointFloat(310.f, 350.f), PointFloat(590.f, 192.5f), PointFloat(480.f, 670.f)); // ���� ĳ���� ��ġ
-	addObject(ObjectType::ImageStorage, imageStorage);
+	auto imageStorageLeft = new ImageStorage("left");
+	imageStorageLeft->setName( "image_storage_left" );
+	imageStorageLeft->setimagepos(PointFloat(310.f, 350.f), PointFloat(590.f, 192.5f), PointFloat(480.f, 670.f));
+	addObject(ObjectType::ImageStorage, imageStorageLeft );
 
-	auto imageStorageRight = new ImageStorage("character_right");
-	imageStorageRight->setimagepos(PointFloat(985.f, 350.f), PointFloat(690.f, 192.5f), PointFloat(800.f, 670.f)); // ������ ĳ���� ��ġ
+	auto imageStorageRight = new ImageStorage("right");
+	imageStorageRight->setName( "image_storage_right" );
+	imageStorageRight->setimagepos(PointFloat(985.f, 350.f), PointFloat(690.f, 192.5f), PointFloat(800.f, 670.f));
 	addObject(ObjectType::ImageStorage, imageStorageRight);
 
 	auto backBtn = new Button( "character_back_button", "back_button", true );

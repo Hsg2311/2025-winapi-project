@@ -5,12 +5,12 @@
 
 #include<iostream>
 
-void ImageStorage::initializeImages() {
+void ImageStorage::initializeImages( const std::string& leftOrRight ) {
     std::vector<std::string> image = {
-        "korea.png",
-        "argentina.png",
-        "france.png",
-        "america.png"
+        "korea_" + leftOrRight+ ".png",
+        "argentina_" + leftOrRight + ".png",
+        "france_" + leftOrRight + ".png",
+        "america_" + leftOrRight + ".png"
     };
     std::vector<std::string> flag = {
         "k_flag.png",

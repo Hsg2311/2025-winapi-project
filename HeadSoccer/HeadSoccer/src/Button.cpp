@@ -100,22 +100,8 @@ void Button::mouseLbtnClicked( ) {
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
+				.wParam = static_cast<DWORD_PTR> ( 1 ),
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "image_storage_left" ) )
 			}
 		);
 	}
@@ -123,22 +109,8 @@ void Button::mouseLbtnClicked( ) {
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
+				.wParam = static_cast<DWORD_PTR> ( 1 ),
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "image_storage_right" ) )
 			}
 		);
 	}
@@ -146,22 +118,8 @@ void Button::mouseLbtnClicked( ) {
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
+				.wParam = static_cast<DWORD_PTR> ( -1 ),
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "image_storage_left" ) )
 			}
 		);
 	}
@@ -169,22 +127,8 @@ void Button::mouseLbtnClicked( ) {
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
+				.wParam = static_cast<DWORD_PTR> ( -1 ),
+				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "image_storage_right" ) )
 			}
 		);
 	}
