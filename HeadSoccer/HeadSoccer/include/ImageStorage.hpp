@@ -16,11 +16,8 @@ struct statdata {
 class ImageStorage : public Object
 {
 public:
-    ImageStorage() : Object(), index_(0), flagIndex_(0), statIndex_(0) {
-        initializeImages();
-    }
-    ImageStorage(const std::string_view name) : Object(name), index_(0), flagIndex_(0), statIndex_(0) {
-        initializeImages();
+    ImageStorage(const std::string& leftOrRight) : Object("", PointFloat( ), PointFloat( ) ), index_( 0 ), flagIndex_( 0 ), statIndex_( 0 ) {
+        initializeImages( leftOrRight );
     }
     ImageStorage(const ImageStorage&) = delete;
     ImageStorage& operator=(const ImageStorage&) = delete;
@@ -77,7 +74,7 @@ public:
     }
 
 private:
-    void initializeImages();
+    void initializeImages(const std::string& leftOrRight);
     PointFloat charpos_;
     PointFloat flagpos_;
     PointFloat statpos_;
