@@ -1,6 +1,15 @@
 #include "../include/Player.hpp"
 #include "../include/Timer.hpp"
 #include "../include/InputHandler.hpp"
+#include "../include/Camera.hpp"
+
+void Player::render(HDC hdc) {
+	auto relativePos = pos_ - Camera::getPos();
+	if (image_) {
+		image_->draw(hdc, relativePos);
+	}
+	componentRender(hdc);
+}
 
 void Player::update() {
     float dt = Timer::fdt();

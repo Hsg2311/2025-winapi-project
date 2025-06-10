@@ -32,9 +32,9 @@ public:
 private:
 	std::string imageName;
 	std::string flagName;
-	int score;
 	int speedStat_;
 	int jumpStat_;
 	int kickStat_;
+	int score;
 };
 

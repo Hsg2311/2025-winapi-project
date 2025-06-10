@@ -46,6 +46,16 @@ public:
     Image* getStatImage(const std::string& key) {
         return stats_[key];
     }
+	const std::string& getimageName() const {
+		auto it = images_.begin();
+		std::advance(it, index_);
+		return it->first;
+	}
+	const std::string& getflagName() const {
+		auto it = flagImages_.begin();
+		std::advance(it, flagIndex_);
+		return it->first;
+	}
     std::int32_t getIndex() const { return index_; }
     std::int32_t getFlagIndex() const { return flagIndex_; }
     std::int32_t getStatIndex() const { return statIndex_; }

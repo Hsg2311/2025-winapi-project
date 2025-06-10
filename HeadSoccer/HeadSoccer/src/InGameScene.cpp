@@ -4,6 +4,7 @@
 #include "../include/Button.hpp"
 #include "../include/CharacterInfo.hpp"
 #include "../include/Stopwatch.hpp"
+#include "../include/Player.hpp"
 
 extern StageNumber stageNum;
 extern CharacterInfo player1;
@@ -43,7 +44,11 @@ void InGameScene::entry( ) {
 	pauseBtn->setPos( PointFloat( 1230.f, 40.f ) );
 	addObject( ObjectType::Button, pauseBtn );
 
-
+	auto p1 = new Player(player1.getImage(), player1.getSpeedStat(),
+		player1.getJumpStat(), player1.getKickStat(), "left");
+	p1->setName("player1");
+	p1->setPos(PointFloat(300.f, 500.f));
+	addObject(ObjectType::Player, p1);
 
 	// 임시 설정 값들 나중에 수정 필요
 
