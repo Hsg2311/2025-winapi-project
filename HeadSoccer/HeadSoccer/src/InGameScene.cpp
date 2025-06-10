@@ -3,13 +3,27 @@
 #include "../include/Background.hpp"
 #include "../include/Button.hpp"
 #include "../include/CharacterInfo.hpp"
+#include "../include/Player.hpp"
 
 extern StageNumber stageNum;
 extern CharacterInfo player1;
 extern CharacterInfo player2;
 
+
 void InGameScene::entry( ) {
 	Background* stageBg = nullptr;
+
+	auto* p1=new Player(player1.getImage(), player1.getKickStat(), player1.getJumpStat(), player1.getSpeedStat(), 1);
+	
+	p1->setName("player 1");
+	p1->setPos(PointFloat(240.f, 160.f));
+	addObject(ObjectType::Player, p1);
+
+	auto* p2 = new Player(player2.getImage(), player2.getKickStat(), player2.getJumpStat(), player2.getSpeedStat(), 2);
+	p2->setName("player 2");
+	p2->setPos(PointFloat(1080.f, 160.f));
+	addObject(ObjectType::Player, p2);
+
 	if ( stageNum == StageNumber::Stage1 ) {
 		stageBg = new Background( "stage1_bg", "stage1.png", false );
 	}

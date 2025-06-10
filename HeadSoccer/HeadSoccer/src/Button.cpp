@@ -6,6 +6,10 @@
 #include "../include/Camera.hpp"
 #include "../include/SceneHandler.hpp"
 #include "../include/CharacterInfo.hpp"
+#include "../include/ImageStorage.hpp"
+
+
+#include<iostream>
 
 //#include <iostream>
 extern StageNumber stageNum;
@@ -104,20 +108,6 @@ void Button::mouseLbtnClicked( ) {
 				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
 			}
 		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
-			}
-		);
 	}
 	else if ( name == "right_up_button" ) {
 		EventHandler::addEvent(
@@ -125,20 +115,6 @@ void Button::mouseLbtnClicked( ) {
 				.type = EventType::UpdateIndex,
 				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
 				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( 1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
 			}
 		);
 	}
@@ -150,20 +126,6 @@ void Button::mouseLbtnClicked( ) {
 				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character" ) )
 			}
 		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ���� ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat" ) )
-			}
-		);
 	}
 	else if ( name == "right_down_button" ) {
 		EventHandler::addEvent(
@@ -171,20 +133,6 @@ void Button::mouseLbtnClicked( ) {
 				.type = EventType::UpdateIndex,
 				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
 				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "character_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "flag_right" ) )
-			}
-		);
-		EventHandler::addEvent(
-			Event{
-				.type = EventType::UpdateIndex,
-				.wParam = static_cast<DWORD_PTR> ( -1 ), // ������ ĳ���� �ε��� ����
-				.lParam = reinterpret_cast<DWORD_PTR>( SceneHandler::getCurrScene( )->getObjectByName( "stat_right" ) )
 			}
 		);
 	}
@@ -197,6 +145,23 @@ void Button::mouseLbtnClicked( ) {
 		);
 	}
 	else if ( name == "character_next_button" ) {
+		auto leftImageStorage = SceneHandler::getCurrScene()->getObjectByName("character");
+		if (leftImageStorage) {
+			auto leftStorage = static_cast<ImageStorage*>(leftImageStorage);
+			player1.setStats(leftStorage->getspeed(), leftStorage->getjump(), leftStorage->getkick());
+			player1.setImagename(leftStorage->getCharacterFileName());
+			player1.setFlagname(leftStorage->getFlagFileName());
+		}
+
+		// 오른쪽 캐릭터 (player2) 데이터 설정
+		auto rightImageStorage = SceneHandler::getCurrScene()->getObjectByName("character_right");
+		if (rightImageStorage) {
+			auto rightStorage = static_cast<ImageStorage*>(rightImageStorage);
+			player2.setStats(rightStorage->getspeed(), rightStorage->getjump(), rightStorage->getkick());
+			player2.setFlagname(rightStorage->getFlagFileName());
+			player2.setImagename(rightStorage->getCharacterFileName());
+			std::cout << player2.getImage() << std::endl;
+		}
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::ChangeScene,

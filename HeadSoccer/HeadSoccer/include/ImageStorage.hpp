@@ -1,6 +1,7 @@
 #ifndef __IMAGE_STORAGE_HPP__
 #define __IMAGE_STORAGE_HPP__
 
+#include "../include/CharacterInfo.hpp"
 #include "PointFloat.hpp"
 #include "Object.hpp"
 #include <map>
@@ -28,6 +29,17 @@ public:
     ImageStorage& operator=(ImageStorage&&) = delete;
     virtual ~ImageStorage() = default;
 
+    
+    int getspeed() {
+		return statData[index_].speedstat;
+    }
+	int getjump() {
+		return statData[index_].jumpstat;
+	}
+    int getkick() {
+        return statData[index_].kickstat;
+    }
+
     void update() override;
     void render(HDC hdc) override;
 
@@ -49,6 +61,21 @@ public:
     Image* getStatImage(const std::string& key) {
         return stats_[key];
     }
+
+    // 캐릭터 이미지 파일 이름 반환
+    std::string getCharacterFileName() const {
+        auto it = images_.begin();
+        std::advance(it, index_);
+        return it != images_.end() ? it->first : "";
+    }
+
+    // 플래그 이미지 파일 이름 반환
+    std::string getFlagFileName() const {
+        auto it = flagImages_.begin();
+        std::advance(it, flagIndex_);
+        return it != flagImages_.end() ? it->first : "";
+    }
+
     std::int32_t getIndex() const { return index_; }
     std::int32_t getFlagIndex() const { return flagIndex_; }
     std::int32_t getStatIndex() const { return statIndex_; }
@@ -65,15 +92,6 @@ public:
         charpos_ = charpos;
         flagpos_ = flagpos;
         statpos_ = statpos;
-    }
-    int getspeed() {
-        return statData[statIndex_].speedstat;
-    }
-    int getjump() {
-        return statData[statIndex_].jumpstat;
-    }
-    int getkick() {
-        return statData[statIndex_].kickstat;
     }
 
 private:

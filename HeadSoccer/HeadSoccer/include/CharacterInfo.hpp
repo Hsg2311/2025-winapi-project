@@ -1,17 +1,10 @@
-#include <string>
+#ifndef __CHARACTER_INFO_HPP__
+#define __CHARACTER_INFO_HPP__
 
+#include <string>
 class CharacterInfo
 {
 public:
-	CharacterInfo() : imageName(), flagName(), score(0), speedStat_(0), jumpStat_(0), kickStat_(0) {}
-	CharacterInfo(const std::string& img, const std::string& flg, int scr, int speed, int jump, int kick, int player_num)
-		: imageName(img), flagName(flg), score(scr), speedStat_(speed), jumpStat_(jump), kickStat_(kick) {
-	}
-	CharacterInfo(const CharacterInfo&) = default;
-	CharacterInfo& operator=(const CharacterInfo&) = default;
-	CharacterInfo(CharacterInfo&&) = default;
-	CharacterInfo& operator=(CharacterInfo&&) = default;
-	virtual ~CharacterInfo() = default;
 	
 	std::string getImage() const { return imageName; }
 	std::string getFlag() const { return flagName; }
@@ -20,8 +13,8 @@ public:
 	int getJumpStat() const { return jumpStat_; }
 	int getKickStat() const { return kickStat_; }
 	
-	void setImage(const std::string& img) { imageName = img; }
-	void setFlag(const std::string& flg) { flagName = flg; }
+	void setImagename(const std::string& img) { imageName = img; }
+	void setFlagname(const std::string& flg) { flagName = flg; }
 	void setScore(int scr) { score = scr; }
 	void setStats(int speed, int jump, int kick) {
 		speedStat_ = speed;
@@ -38,3 +31,4 @@ private:
 	int kickStat_;
 };
 
+#endif

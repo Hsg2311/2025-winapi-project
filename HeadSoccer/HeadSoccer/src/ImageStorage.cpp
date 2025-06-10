@@ -7,16 +7,16 @@
 
 void ImageStorage::initializeImages() {
     std::vector<std::string> image = {
-        "korea.png",
-        "argentina.png",
-        "france.png",
-        "america.png"
+        "korea",
+        "argentina",
+        "france",
+        "america"
     };
     std::vector<std::string> flag = {
-        "k_flag.png",
-        "ag_flag.png",
-        "f_flag.png",
-        "a_flag.png"
+        "k_flag",
+        "ag_flag",
+        "f_flag",
+        "a_flag"
     };
     std::vector<std::string> stat = {
         "stat_color.png",
@@ -25,12 +25,12 @@ void ImageStorage::initializeImages() {
         "stat_color.png"
     };
     for (const auto& file : image) {
-        auto filePath = std::filesystem::path("assets/" + file);
+        auto filePath = std::filesystem::path("assets/" + file+".png");
         Image* image = ResourceHandler::loadImage(file, std::filesystem::canonical(filePath).string(), true);
         addImage(file, image);
     }
     for (const auto& file : flag) {
-        auto flagPath = std::filesystem::path("assets/" + file);
+        auto flagPath = std::filesystem::path("assets/" + file+".png");
         Image* flagImage = ResourceHandler::loadImage(file, std::filesystem::canonical(flagPath).string(), false);
         addFlagImage(file, flagImage);
     }
@@ -83,6 +83,6 @@ void ImageStorage::render(HDC hdc) {
 		statimage->draw(hdc, statPos, statData[index_].jumpstat, -1);
 		statimage->draw(hdc, statPos, statData[index_].kickstat, 27);
 	}
-    
     componentRender(hdc); // Animator³ª Collider ·»´õ¸µ
+    
 }

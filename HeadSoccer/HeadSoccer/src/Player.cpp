@@ -1,6 +1,14 @@
 #include "../include/Player.hpp"
 #include "../include/Timer.hpp"
 #include "../include/InputHandler.hpp"
+#include "../include/Camera.hpp"
+#include "../include/CharacterInfo.hpp"
+
+void Player::render(HDC hdc) {
+	if (head) {
+		head->draw(hdc, pos_);
+	}
+}
 
 void Player::update() {
     float dt = Timer::fdt();
@@ -25,7 +33,7 @@ void Player::update() {
 
     if (pnum_ == 1) {
         if (jumped == false && InputHandler::getKeyState(Key::W) == KeyState::Tap) {
-            jspeed = -1500.0f; // 점프
+            jspeed = jumppower; // 점프
             jumped = true;
         }
 
@@ -80,7 +88,7 @@ void Player::update() {
     if (pnum_ == 2) {
 
         if (jumped == false && InputHandler::getKeyState(Key::I) == KeyState::Tap) {
-            jspeed = -1500.0f; //점프
+            jspeed = jumppower; //점프
             jumped = true;
         }
 
@@ -134,4 +142,5 @@ void Player::update() {
 
     if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
+	componentUpdate();
 }
