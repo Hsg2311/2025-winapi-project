@@ -30,10 +30,14 @@ namespace fs = std::filesystem;
 
 enum class ObjectType {
 	Background,
+	ImageStorage,
+	Ball,
+	TimeUI,
+	InGameUI,
 	Button,
 	Player,
-	Ball,
-	ImageStorage,
+
+	GoalPost,
 
 	EOE
 };
