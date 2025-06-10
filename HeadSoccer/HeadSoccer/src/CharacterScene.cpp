@@ -65,6 +65,11 @@ void CharacterScene::entry( ) {
 	nextBtn->setPos( PointFloat( 1130.f, 665.f ) );
 	addObject( ObjectType::Button, nextBtn );
 
+	auto status = new Background( "status", "status.png" );
+	status->setName( "status" );
+	status->setPos( PointFloat( 480.f, 670.f ) );
+	addObject( ObjectType::Background, status );
+
 	Camera::setPos( { 0.f, 0.f } );
 }
 
