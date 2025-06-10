@@ -165,6 +165,10 @@ void Button::mouseLbtnClicked( ) {
 		);
 	}
 	else if ( name == "stage_play_button" ) {
+		if ( stageNum == StageNumber::None ) {
+			return;
+		}
+
 		EventHandler::addEvent(
 			Event{
 				.type = EventType::ChangeScene,
