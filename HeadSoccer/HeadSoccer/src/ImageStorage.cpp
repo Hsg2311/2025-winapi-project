@@ -43,8 +43,8 @@ void ImageStorage::initializeImages( const std::string& leftOrRight ) {
     // statData 초기화 (america, argentina, france, korea 순서로 맞춤)
     statData = {
         {8, 5, 5}, // america
-        {5, 5, 8}, // argentina
-        {7, 7, 5}, // france
+        {5, 8, 5}, // argentina
+        {7, 5, 7}, // france
         {6, 6, 6}  // korea
     };
 }
@@ -80,8 +80,8 @@ void ImageStorage::render(HDC hdc) {
 	if (statimage) {
 		auto statPos = statpos_ - Camera::getPos();                            
         statimage->draw(hdc, statPos, statData[index_].speedstat, -30);
-		statimage->draw(hdc, statPos, statData[index_].jumpstat, -1);
-		statimage->draw(hdc, statPos, statData[index_].kickstat, 27);
+		statimage->draw(hdc, statPos, statData[index_].kickstat, -1);
+		statimage->draw(hdc, statPos, statData[index_].jumpstat, 27);
 	}
     
     componentRender(hdc); // Animator나 Collider 렌더링

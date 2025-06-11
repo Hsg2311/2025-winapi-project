@@ -33,7 +33,7 @@ void Player::update() {
 
     float dt = Timer::fdt();
 
-    float width = 1240.0f;
+    float width = 1280.0f;
     float height = 580.f;
 
     pos_.y += 1000.0f * dt;
@@ -49,7 +49,7 @@ void Player::update() {
     ldtimer_ -= dt;
     rdtimer_ -= dt;
     dashintime -= dt;
-    dashdis = 100.0f / 0.075f;
+    dashdis = 100.0f / 0.05f;
 
     if (pnum_==1) {
         if (InputHandler::getKeyState(Key::S) == KeyState::Tap) {
@@ -169,7 +169,7 @@ void Player::update() {
         }
         else if (dashintime <= 0.0f && InputHandler::getKeyState(Key::L) == KeyState::Away && rdtimer_ >= 0.0f) {
             rdashed = true;
-            dashdis = 100.0f / 0.075f;
+            dashdis = 100.0f / 0.05f;
             ldtimer_ = 0.0f;
             dashtimer = 0.075f;
         }
@@ -183,7 +183,7 @@ void Player::update() {
         }
     }
 
-    if (pos_.x - scale_.x <= 40.0f) pos_.x = 40.0f+scale_.x;
+    if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
 
     componentUpdate( );

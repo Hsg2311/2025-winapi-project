@@ -9,8 +9,8 @@
 
 struct statdata {
     int speedstat;
-    int jumpstat;
     int kickstat;
+    int jumpstat;
 };
 
 class ImageStorage : public Object

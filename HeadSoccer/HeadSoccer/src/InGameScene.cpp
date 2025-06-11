@@ -6,6 +6,7 @@
 #include "../include/Stopwatch.hpp"
 #include "../include/Player.hpp"
 #include "../include/CollisionHandler.hpp"
+#include "../include/Ball.hpp"
 
 extern StageNumber stageNum;
 extern CharacterInfo player1;
@@ -56,8 +57,8 @@ void InGameScene::entry( ) {
 		}
 		temp.push_back( c );
 	}
-	auto p1 = new Player( temp, player1.getSpeedStat(),
-		player1.getJumpStat(), player1.getKickStat(), "left",1);
+	auto p1 = new Player( temp, player1.getSpeedStat(), player1.getKickStat(),
+		player1.getJumpStat(), "left",1);
 	p1->setName("player1");
 	p1->setPos(PointFloat(300.f, 500.f));
 	addObject(ObjectType::Player, p1);
@@ -70,16 +71,17 @@ void InGameScene::entry( ) {
 		}
 		temp2.push_back(c);
 	}
-	auto p2 = new Player(temp2, player2.getSpeedStat(),
-		player2.getJumpStat(), player2.getKickStat(), "right",2);
+	auto p2 = new Player(temp2, player2.getSpeedStat(), player2.getKickStat(),
+		player2.getJumpStat(), "right",2);
 	p2->setName("player2");
 	p2->setPos(PointFloat(980.f, 500.f));
 	addObject(ObjectType::Player, p2);
 
-
-
-
-	// 임시 설정 값들 나중에 수정 필요
+	auto ball = new Ball("ball");
+	ball->setName("ball");
+	ball->setPos(PointFloat(640.f, 360.f));
+	addObject(ObjectType::Ball, ball);
+W
 	auto p1Flag = player1.getFlag( );
 	auto flagTemp = std::string( );
 	for ( auto c : p1Flag ) {
