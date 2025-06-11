@@ -1,19 +1,16 @@
 #include "../include/Ball.hpp"
 #include "../include/Timer.hpp"
 #include "../include/Camera.hpp"
+#include "../include/InputHandler.hpp"
 
 void Ball::kickleft() {
-    if (velo_.x <= 0)velo_.x += -500.0f;
-    else  velo_.x = -velo_.x - 500.0f;
-    if (velo_.y <= 0)velo_.y += -100.0f;
-    else velo_.y = -velo_.y - 100.0f;
+    velo_.x -= 2000.0f;
+    velo_.y += 1000.0f;
 }
 
-void Ball::kickright() {
-    if (velo_.x >= 0)velo_.x += 500.0f;
-    else velo_.x = -velo_.x + 500.0f;
-    if (velo_.y <= 0)velo_.y += -100.0f;
-    else velo_.y = -velo_.y - 100.0f;
+void Ball::kickright( ) {
+    velo_.x += 2000.0f;
+    velo_.y -= 1000.0f;
 }
 
 void Ball::render(HDC hdc) {
@@ -25,6 +22,13 @@ void Ball::render(HDC hdc) {
 }
 
 void Ball::update() {
+	if ( InputHandler::getKeyState( Key::R ) == KeyState::Tap ) {
+        kickright( );
+	}
+	if ( InputHandler::getKeyState( Key::L ) == KeyState::Tap ) {
+		kickleft( );
+	}
+
     float dt = Timer::fdt();
     static float timer = 0;
     timer += dt;
