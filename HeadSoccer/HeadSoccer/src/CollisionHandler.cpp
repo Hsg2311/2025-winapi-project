@@ -37,12 +37,12 @@ void CollisionHandler::collUpdate( ObjectType lhs, ObjectType rhs ) {
 
 	for ( Object* lhsObj : lhsGroup ) {
 		if ( lhsObj == nullptr || lhsObj->getCollider( ) == nullptr ) {
-			return;
+			continue;
 		}
 
 		for ( Object* rhsObj : rhsGroup ) {
 			if ( rhsObj == nullptr || rhsObj->getCollider( ) == nullptr || lhsObj == rhsObj ) {
-				return;
+				continue;
 			}
 
 			auto combi = ColliderID{

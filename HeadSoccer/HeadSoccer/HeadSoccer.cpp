@@ -3,6 +3,7 @@
 
 #include "include/Game.hpp"
 #include "include/SceneHandler.hpp"
+#include "include/EventHandler.hpp"
 
 #pragma comment(linker,"/entry:wWinMainCRTStartup /subsystem:console")
 

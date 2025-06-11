@@ -10,7 +10,9 @@ public:
 	Background( const std::string& key, const std::string& fileName, bool premultipliedAlpha );
 	virtual ~Background( ) { }
 
-	virtual void update( ) override { }
+	virtual void update( ) override {
+		componentUpdate( );
+	}
 	virtual void render( HDC hdc ) override;
 
 private:

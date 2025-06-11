@@ -37,9 +37,9 @@ public:
 		if ( animator_ ) {
 			animator_->render( hdc, pos_ );
 		}
-		if ( collider_ ) {
+		/*if ( collider_ ) {
 			collider_->render( hdc );
-		}
+		}*/
 	}
 
 	virtual void onCollision( Object* other ) {}

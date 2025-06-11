@@ -7,7 +7,14 @@ class Collider {
 public:
 	Collider( )
 		: offset_( ), finalPos_( ), scale_( )
-		, id_{ nextId_++ }, collCnt_{ 0 } {}
+		, id_{ nextId_++ }, collCnt_{ 0 },
+		rPen_{ CreatePen( PS_SOLID, 1, RGB( 0, 255, 0 ) ) },
+		gPen_{ CreatePen( PS_SOLID, 1, RGB( 255, 0, 0 ) ) } {}
+
+	~Collider( ) {
+		DeleteObject( rPen_ );
+		DeleteObject( gPen_ );
+	}
 
 	// need to implement a copy constructor and a move constructor
 
@@ -54,6 +61,9 @@ private:
 	PointFloat scale_;
 	std::uint16_t id_;
 	std::int32_t collCnt_;
+
+	HPEN rPen_;
+	HPEN gPen_;
 
 	static std::uint16_t nextId_;
 };

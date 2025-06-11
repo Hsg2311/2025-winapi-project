@@ -25,21 +25,47 @@ public:
 		dashtimer = 0.0f;
 		dashintime = 0.0f;
 
-		/*createAnimator( );
-		auto str = std::string( "player_idle_" + lr );
-		auto animFilePath = fs::path( "assets/" + str + ".png" );
-		auto animImage = ResourceHandler::loadImage( str, fs::canonical( animFilePath ).string( ), true );
-		getAnimator( )->createAnimation( str, animImage, PointFloat( 0.f, 0.f ),
-			PointFloat( 93.f, 33.f ), PointFloat( 93.f, 0.f ), 6, 0.065f, PointFloat( 0.f, 53.f ) );
-		getAnimator( )->play( str );*/
-
+		
 		createAnimator( );
-		auto str = std::string( "player_run_" + lr );
-		auto animFilePath = fs::path( "assets/" + str + ".png" );
-		auto animImage = ResourceHandler::loadImage( str, fs::canonical( animFilePath ).string( ), true );
-		getAnimator( )->createAnimation( str, animImage, PointFloat( 522.5f, 0.f ),
-			PointFloat( 104.5f, 30.f ), PointFloat( -104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
-		getAnimator( )->play( str );
+		if ( lr == "left" ) {
+			auto idleAnimFilePath = fs::path( "assets/player_idle_left.png" );
+			auto idleAnimImage = ResourceHandler::loadImage( "player_idle_left", fs::canonical( idleAnimFilePath ).string( ), true );
+
+			getAnimator( )->createAnimation( "player_idle_left", idleAnimImage, PointFloat( 0.f, 0.f ),
+				PointFloat( 93.f, 33.f ), PointFloat( 93.f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+
+			auto runAnimFilePath = fs::path( "assets/player_run_left.png" );
+			auto runAnimImage = ResourceHandler::loadImage( "player_run_left", fs::canonical( runAnimFilePath ).string( ), true );
+
+			getAnimator( )->createAnimation( "player_run_front_left", runAnimImage, PointFloat( 522.5f, 0.f ),
+				PointFloat( 104.5f, 30.f ), PointFloat( -104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+			getAnimator( )->createAnimation( "player_run_back_left", runAnimImage, PointFloat( 0.f, 0.f ),
+				PointFloat( 104.5f, 30.f ), PointFloat( 104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+
+			getAnimator( )->play( "player_idle_left" );
+		}
+		else if ( lr == "right" ) {
+			auto idleAnimFilePath = fs::path( "assets/player_idle_right.png" );
+			auto idleAnimImage = ResourceHandler::loadImage( "player_idle_right", fs::canonical( idleAnimFilePath ).string( ), true );
+
+			getAnimator( )->createAnimation( "player_idle_right", idleAnimImage, PointFloat( 0.f, 0.f ),
+				PointFloat( 93.f, 33.f ), PointFloat( 93.f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+
+			auto runAnimFilePath = fs::path( "assets/player_run_right.png" );
+			auto runAnimImage = ResourceHandler::loadImage( "player_run_right", fs::canonical( runAnimFilePath ).string( ), true );
+			
+			getAnimator( )->createAnimation( "player_run_front_right", runAnimImage, PointFloat( 0.f, 0.f ),
+				PointFloat( 104.5f, 30.f ), PointFloat( 104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+			getAnimator( )->createAnimation( "player_run_back_right", runAnimImage, PointFloat( 522.5f, 0.f ),
+				PointFloat( 104.5f, 30.f ), PointFloat( -104.5f, 0.f ), 6, 0.07f, PointFloat( 0.f, 53.f ) );
+
+			getAnimator( )->play( "player_idle_right" );
+		}
+
+
+		createCollider( );
+		getCollider( )->setScale( PointFloat( 70.f, 90.f ) );
+		getCollider( )->setOffset( PointFloat( 0.f, 15.f ) );
 		
 		pnum_ = num;
 	}
@@ -47,6 +73,9 @@ public:
 	void update()override;
 	void render(HDC hdc)override;
 
+	void onCollision( Object* other ) override {}
+	void onCollisionEntry( Object* other ) override;
+	void onCollisionExit( Object* other ) override;
 
 	void ispeed() {
 		speed += 0.1f;

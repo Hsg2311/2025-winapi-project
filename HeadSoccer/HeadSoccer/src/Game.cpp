@@ -4,6 +4,7 @@
 #include "../include/SceneHandler.hpp"
 #include "../include/EventHandler.hpp"
 #include "../include/ResourceHandler.hpp"
+#include "../include/CollisionHandler.hpp"
 
 void Game::init( HWND hWnd, POINT rsl ) {
 	hWnd_ = hWnd;
@@ -39,6 +40,7 @@ void Game::start( ) {
 	InputHandler::update( );
 
 	SceneHandler::update( );
+	CollisionHandler::update( );
 
 	// double buffering
 	Rectangle( memDC_, -1, -1, rsl_.x + 1, rsl_.y + 1 );

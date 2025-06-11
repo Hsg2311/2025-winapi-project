@@ -2,6 +2,7 @@
 #include "../include/ResourceHandler.hpp"
 #include "../include/Timer.hpp"
 #include "../include/Camera.hpp"
+#include "../include/EventHandler.hpp"
 
 Stopwatch::Stopwatch( PointFloat pos, std::uint16_t time )
 	: Object( "Stopwatch", pos, PointFloat( ) ),
@@ -21,6 +22,12 @@ void Stopwatch::update( ) {
 	accT_ += Timer::fdt( );
 	if ( accT_ >= 1.f ) {
 		if ( time_ == 0 ) {
+			EventHandler::addEvent(
+				Event{
+					.type = EventType::ChangeScene,
+					.wParam = static_cast<DWORD_PTR>( SceneType::Result )
+				}
+			);
 			return;
 		}
 

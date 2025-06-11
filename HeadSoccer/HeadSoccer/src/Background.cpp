@@ -18,4 +18,6 @@ void Background::render( HDC hdc ) {
 	auto relativePos = pos_ - cameraPos;
 
 	image_->draw( hdc, relativePos );
+
+	componentRender( hdc );
 }

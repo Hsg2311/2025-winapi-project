@@ -2,11 +2,38 @@
 #include "../include/Timer.hpp"
 #include "../include/InputHandler.hpp"
 #include "../include/Camera.hpp"
+#include "../include/EventHandler.hpp"
+#include "../include/SceneHandler.hpp"
 
 void Player::update() {
+    if ( InputHandler::getKeyState( Key::Esc ) == KeyState::Tap
+        && SceneHandler::getCurrSceneType( ) == SceneType::Result ) {
+        EventHandler::addEvent(
+            Event{
+                .type = EventType::ChangeScene,
+                .wParam = static_cast<DWORD_PTR>( SceneType::SelectCharacter ),
+            }
+         );
+        return;
+    }
+    if ( SceneHandler::getCurrSceneType( ) == SceneType::Result ) {
+        componentUpdate( );
+		return;
+    }
+
+	if ( InputHandler::getKeyState( Key::Esc ) == KeyState::Tap ) {
+		EventHandler::addEvent( 
+            Event{
+				.type = EventType::ChangeScene,
+				.wParam = static_cast<DWORD_PTR>( SceneType::Result ),
+            }
+        );
+		return;
+	}
+
     float dt = Timer::fdt();
 
-    float width = 1280.0f;
+    float width = 1240.0f;
     float height = 580.f;
 
     pos_.y += 1000.0f * dt;
@@ -30,7 +57,7 @@ void Player::update() {
         }
 
         if (jumped == false && InputHandler::getKeyState(Key::W) == KeyState::Tap) {
-            jspeed = -1500.0f; // ����
+            jspeed = jumppower;
             jumped = true;
         }
 
@@ -47,15 +74,19 @@ void Player::update() {
             pos_.x -= dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 ldashed = false;
             }
         }
 
         if (InputHandler::getKeyState(Key::A) == KeyState::Tap ||
             InputHandler::getKeyState(Key::A) == KeyState::Hold) {
-            pos_.x -= speed * dt; // ����
+            pos_.x -= speed * dt;
+			getAnimator( )->play( "player_run_back_left" );
         }
+		else if ( InputHandler::getKeyState( Key::A ) == KeyState::Away ) {
+			getAnimator( )->play( "player_idle_left" );
+		}
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::D) == KeyState::Away && rdtimer_ <= 0.0f) {
             ldtimer_ = 0.0f;
@@ -71,14 +102,18 @@ void Player::update() {
             pos_.x += dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 rdashed = false;
             }
         }
 
         if (InputHandler::getKeyState(Key::D) == KeyState::Tap ||
             InputHandler::getKeyState(Key::D) == KeyState::Hold) {
-            pos_.x += speed * dt; // ������
+            pos_.x += speed * dt;
+			getAnimator( )->play( "player_run_front_left" );
+        }
+        else if ( InputHandler::getKeyState( Key::D ) == KeyState::Away ) {
+            getAnimator( )->play( "player_idle_left" );
         }
     }
 
@@ -88,14 +123,18 @@ void Player::update() {
         }
 
         if (jumped == false && InputHandler::getKeyState(Key::I) == KeyState::Tap) {
-            jspeed = -1500.0f; //����
+            jspeed = jumppower;
             jumped = true;
         }
 
         if (InputHandler::getKeyState(Key::J) == KeyState::Tap ||
             InputHandler::getKeyState(Key::J) == KeyState::Hold) {
-            pos_.x -= speed * dt; // ����
+            pos_.x -= speed * dt;
+			getAnimator( )->play( "player_run_front_right" );
         }
+		else if ( InputHandler::getKeyState( Key::J ) == KeyState::Away ) {
+			getAnimator( )->play( "player_idle_right" );
+		}
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::J) == KeyState::Away && ldtimer_ <= 0.0f) {
             ldtimer_ = 0.3f;
@@ -110,15 +149,19 @@ void Player::update() {
             pos_.x -= dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 ldashed = false;
             }
         }
 
         if (InputHandler::getKeyState(Key::L) == KeyState::Tap ||
             InputHandler::getKeyState(Key::L) == KeyState::Hold) {
-            pos_.x += speed * dt; // ������
+            pos_.x += speed * dt;
+			getAnimator( )->play( "player_run_back_right" );
         }
+		else if ( InputHandler::getKeyState( Key::L ) == KeyState::Away ) {
+			getAnimator( )->play( "player_idle_right" );
+		}
 
         if (dashintime <= 0.0f && InputHandler::getKeyState(Key::L) == KeyState::Away && rdtimer_ <= 0.0f) {
             ldtimer_ = 0.0f;
@@ -134,7 +177,7 @@ void Player::update() {
             pos_.x += dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 rdashed = false;
             }
         }
@@ -153,4 +196,12 @@ void Player::render( HDC hdc ) {
     if ( image_ ) {
         image_->draw( hdc, relativePos );
     }
+}
+
+void Player::onCollisionEntry( Object* other ) {
+    getCollider( )->addCollCnt( );
+}
+
+void Player::onCollisionExit( Object* other ) {
+	getCollider( )->subCollCnt( );
 }

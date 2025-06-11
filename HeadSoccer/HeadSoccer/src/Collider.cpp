@@ -4,14 +4,12 @@
 std::uint16_t Collider::nextId_;
 
 void Collider::render( HDC hdc ) const {
-	auto pen = CreatePen( PS_SOLID, 1, RGB( 0, 255, 0 ) );
+	auto oldPen = (HPEN)SelectObject( hdc, rPen_ );
 	if ( collCnt_ > 0 ) {
-		pen = CreatePen( PS_SOLID, 1, RGB( 255, 0, 0 ) );
+		oldPen = (HPEN)SelectObject( hdc, gPen_ );
 	}
 
 	auto brush = (HBRUSH)GetStockObject( HOLLOW_BRUSH );
-
-	auto oldPen = (HPEN)SelectObject( hdc, pen );
 	auto oldBrush = (HBRUSH)SelectObject( hdc, brush );
 
 	auto relativePos = finalPos_ - Camera::getPos( );
