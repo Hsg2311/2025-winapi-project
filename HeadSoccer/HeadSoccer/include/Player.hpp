@@ -19,6 +19,9 @@ public:
 		dashdis = 100.0f / 0.075f;
 		dashtimer = 0.0f;
 		dashintime = 0.0f;
+		speedstat = ss;
+		kickstat = ks;
+		jumpstat = js;
 		pnum_ = num;
 	}
 
@@ -35,6 +38,9 @@ public:
 	}
 
 private:
+	int speedstat;
+	int kickstat;
+	int jumpstat;
 	Image* image_;
 	std::string flag_;
 	std::string leftorright_;
