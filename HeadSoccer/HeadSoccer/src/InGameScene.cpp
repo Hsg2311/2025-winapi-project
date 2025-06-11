@@ -81,7 +81,7 @@ void InGameScene::entry( ) {
 	ball->setName("ball");
 	ball->setPos(PointFloat(640.f, 360.f));
 	addObject(ObjectType::Ball, ball);
-W
+
 	auto p1Flag = player1.getFlag( );
 	auto flagTemp = std::string( );
 	for ( auto c : p1Flag ) {
