@@ -5,6 +5,7 @@
 #include "../include/CharacterInfo.hpp"
 #include "../include/Stopwatch.hpp"
 #include "../include/Player.hpp"
+#include "../include/Ball.hpp"
 
 extern StageNumber stageNum;
 extern CharacterInfo player1;
@@ -71,6 +72,11 @@ void InGameScene::entry( ) {
 	p2->setName("player2");
 	p2->setPos(PointFloat(980.f, 500.f));
 	addObject(ObjectType::Player, p2);
+
+	auto ball = new Ball("ball");
+	ball->setName("ball");
+	ball->setPos(PointFloat(640.f, 360.f));
+	addObject(ObjectType::Ball, ball);
 
 	// 임시 설정 값들 나중에 수정 필요
 
