@@ -14,7 +14,7 @@ void Player::render(HDC hdc) {
 void Player::update() {
     float dt = Timer::fdt();
 
-    float width = 1240.0f;
+    float width = 1280.0f;
     float height = 615.5f;
 
     pos_.y += 1000.0f * dt;
@@ -30,7 +30,7 @@ void Player::update() {
     ldtimer_ -= dt;
     rdtimer_ -= dt;
     dashintime -= dt;
-    dashdis = 100.0f / 0.075f;
+    dashdis = 100.0f / 0.05f;
 
     if (pnum_==1) {
         if (InputHandler::getKeyState(Key::S) == KeyState::Tap) {
@@ -38,7 +38,7 @@ void Player::update() {
         }
 
         if (jumped == false && InputHandler::getKeyState(Key::W) == KeyState::Tap) {
-            jspeed = -1500.0f; // 점프
+            jspeed = jumppower; // 점프
             jumped = true;
         }
 
@@ -55,7 +55,7 @@ void Player::update() {
             pos_.x -= dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 ldashed = false;
             }
         }
@@ -79,7 +79,7 @@ void Player::update() {
             pos_.x += dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 rdashed = false;
             }
         }
@@ -96,7 +96,7 @@ void Player::update() {
         }
 
         if (jumped == false && InputHandler::getKeyState(Key::I) == KeyState::Tap) {
-            jspeed = -1500.0f; //점프
+            jspeed = jumppower; //점프
             jumped = true;
         }
 
@@ -118,7 +118,7 @@ void Player::update() {
             pos_.x -= dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 ldashed = false;
             }
         }
@@ -134,7 +134,7 @@ void Player::update() {
         }
         else if (dashintime <= 0.0f && InputHandler::getKeyState(Key::L) == KeyState::Away && rdtimer_ >= 0.0f) {
             rdashed = true;
-            dashdis = 100.0f / 0.075f;
+            dashdis = 100.0f / 0.05f;
             ldtimer_ = 0.0f;
             dashtimer = 0.075f;
         }
@@ -142,12 +142,12 @@ void Player::update() {
             pos_.x += dashdis * dt;
             dashtimer -= dt;
             if (dashtimer <= 0.0f) {
-                dashintime = 1.0f;
+                dashintime = 0.5f;
                 rdashed = false;
             }
         }
     }
 
-    if (pos_.x - scale_.x <= 40.0f) pos_.x = 40.0f+scale_.x;
+    if (pos_.x - scale_.x <= 0.0f) pos_.x = scale_.x;
     else if (pos_.x + scale_.x >= width) pos_.x = width - scale_.x;
 }

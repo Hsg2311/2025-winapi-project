@@ -23,18 +23,18 @@ public:
 	void setImage(const std::string& img) { imageName = img; }
 	void setFlag(const std::string& flg) { flagName = flg; }
 	void setScore(int scr) { score = scr; }
-	void setStats(int speed, int jump, int kick) {
+	void setStats(int speed, int kick, int jump) {
 		speedStat_ = speed;
-		jumpStat_ = jump;
 		kickStat_ = kick;
+		jumpStat_ = jump;
 	}
 
 private:
 	std::string imageName;
 	std::string flagName;
 	int speedStat_;
-	int jumpStat_;
 	int kickStat_;
+	int jumpStat_;
 	int score;
 };
 

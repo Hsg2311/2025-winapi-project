@@ -145,7 +145,7 @@ void Button::mouseLbtnClicked( ) {
 		auto leftImageStorage = SceneHandler::getCurrScene()->getObjectByName("image_storage_left");
 		if (leftImageStorage) {
 			auto leftStorage = static_cast<ImageStorage*>(leftImageStorage);
-			player1.setStats(leftStorage->getspeed(), leftStorage->getjump(), leftStorage->getkick());
+			player1.setStats(leftStorage->getspeed(), leftStorage->getkick(), leftStorage->getjump() );
 			player1.setImage(leftStorage->getimageName());
 			player1.setFlag(leftStorage->getflagName());
 		}
@@ -154,7 +154,7 @@ void Button::mouseLbtnClicked( ) {
 		auto rightImageStorage = SceneHandler::getCurrScene()->getObjectByName("image_storage_right");
 		if (rightImageStorage) {
 			auto rightStorage = static_cast<ImageStorage*>(rightImageStorage);
-			player2.setStats(rightStorage->getspeed(), rightStorage->getjump(), rightStorage->getkick());
+			player2.setStats(rightStorage->getspeed(), rightStorage->getkick(), rightStorage->getjump());
 			player2.setImage(rightStorage->getimageName());
 			player2.setFlag(rightStorage->getflagName());
 		}
